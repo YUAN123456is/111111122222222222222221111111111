@@ -159,7 +159,7 @@ const styles = StyleSheet.create({
   historySection: { paddingVertical: 12 },
   historyScroll: { paddingHorizontal: 16, gap: 12 },
   historyCard: { width: 140, borderRadius: 8, overflow: "hidden", backgroundColor: colors.dark.card },
-  historyPoster: { width: "100%", aspectRatio: 16 / 9, backgroundColor: colors.dark.muted },
+  historyPoster: { width: "100%", aspectRatio: 3 / 4, backgroundColor: colors.dark.muted },
   historyInfo: { padding: 8 },
   historyTitle: { color: colors.dark.foreground, fontSize: 12, fontWeight: "600" },
   historyEp: { color: colors.dark.secondaryForeground, fontSize: 10, marginTop: 4 },

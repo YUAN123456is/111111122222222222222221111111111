@@ -14,7 +14,7 @@ export function Sidebar() {
 
   return (
     <aside className="w-64 bg-card border-r border-border h-full flex-col hidden md:flex">
-      <div className="h-16 flex items-center px-6 border-b border-border">
+      <div className="h-16 flex items-center px-6 border-b border-border bg-[#0A0D14]">
         <img src={`${import.meta.env.BASE_URL}logo-wordmark.png`} alt="Nebula TV" className="h-8 w-auto" />
       </div>
       <nav className="flex-1 p-4 space-y-1">

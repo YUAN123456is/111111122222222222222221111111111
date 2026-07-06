@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import {
   View, Text, StyleSheet, Pressable, FlatList,
-  Dimensions, ActivityIndicator, SafeAreaView
+  Dimensions, ActivityIndicator, SafeAreaView, PanResponder
 } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import { useVideoPlayer, VideoView } from 'expo-video';
+import { useVideoPlayer, VideoView, VideoPlayer } from 'expo-video';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { useGetDramaPlayback, getGetDramaPlaybackQueryKey } from '@workspace/api-client-react';
 import { useQueryClient } from '@tanstack/react-query';
@@ -20,16 +20,30 @@ import ReportSheet from '@/components/ReportSheet';
 const { height: WINDOW_HEIGHT, width: WINDOW_WIDTH } = Dimensions.get('window');
 
 const SingleVideo = ({
-  url, isActive, isUnlocked, onNeedAd
+  url, isActive, isUnlocked, onNeedAd, onActivePlayerReady
 }: {
-  url: string, isActive: boolean, isUnlocked: boolean, onNeedAd: () => void
+  url: string, isActive: boolean, isUnlocked: boolean, onNeedAd: () => void,
+  onActivePlayerReady: (player: VideoPlayer | null) => void
 }) => {
   const player = useVideoPlayer(url, player => {
     player.loop = true;
+    player.timeUpdateEventInterval = 0.5;
     if (isActive && isUnlocked) {
       player.play();
     }
   });
+
+  useEffect(() => {
+    if (isActive) {
+      onActivePlayerReady(player);
+    }
+    return () => {
+      if (isActive) {
+        onActivePlayerReady(null);
+      }
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isActive, player]);
 
   useEffect(() => {
     if (isActive && isUnlocked) {
@@ -68,6 +82,66 @@ const SingleVideo = ({
   );
 };
 
+function ProgressBar({
+  progress, onSeek, disabled
+}: { progress: number, onSeek: (fraction: number) => void, disabled: boolean }) {
+  const [barWidth, setBarWidth] = useState(0);
+  const [dragFraction, setDragFraction] = useState<number | null>(null);
+  const barWidthRef = useRef(0);
+
+  const clamp = (v: number) => Math.max(0, Math.min(1, v));
+
+  const panResponder = useRef(
+    PanResponder.create({
+      onStartShouldSetPanResponder: () => !disabled,
+      onMoveShouldSetPanResponder: () => !disabled,
+      onPanResponderGrant: (evt) => {
+        if (disabled || barWidthRef.current === 0) return;
+        const fraction = clamp(evt.nativeEvent.locationX / barWidthRef.current);
+        setDragFraction(fraction);
+      },
+      onPanResponderMove: (evt) => {
+        if (disabled || barWidthRef.current === 0) return;
+        const fraction = clamp(evt.nativeEvent.locationX / barWidthRef.current);
+        setDragFraction(fraction);
+      },
+      onPanResponderRelease: (evt) => {
+        if (disabled || barWidthRef.current === 0) return;
+        const fraction = clamp(evt.nativeEvent.locationX / barWidthRef.current);
+        onSeek(fraction);
+        setDragFraction(null);
+      },
+      onPanResponderTerminate: () => {
+        setDragFraction(null);
+      },
+    })
+  ).current;
+
+  const displayFraction = dragFraction !== null ? dragFraction : progress;
+
+  return (
+    <View
+      style={styles.progressHitArea}
+      onLayout={(e) => {
+        barWidthRef.current = e.nativeEvent.layout.width;
+        setBarWidth(e.nativeEvent.layout.width);
+      }}
+      {...panResponder.panHandlers}
+    >
+      <View style={styles.progressBarBg}>
+        <View style={[styles.progressBarFill, { width: `${clamp(displayFraction) * 100}%` }]} />
+      </View>
+      <View
+        style={[
+          styles.progressHandle,
+          { left: barWidth > 0 ? clamp(displayFraction) * barWidth - 6 : -6 },
+          dragFraction !== null && styles.progressHandleActive,
+        ]}
+      />
+    </View>
+  );
+}
+
 export default function PlayerScreen() {
   const router = useRouter();
   const params = useLocalSearchParams();
@@ -88,6 +162,35 @@ export default function PlayerScreen() {
   const [showDrawer, setShowDrawer] = useState(false);
   const [showReport, setShowReport] = useState(false);
   const [likes, setLikes] = useState<Record<number, boolean>>({});
+  const [playbackTime, setPlaybackTime] = useState({ currentTime: 0, duration: 0 });
+
+  const activePlayerRef = useRef<VideoPlayer | null>(null);
+  const timeUpdateSubRef = useRef<{ remove: () => void } | null>(null);
+
+  const onActivePlayerReady = (player: VideoPlayer | null) => {
+    if (timeUpdateSubRef.current) {
+      timeUpdateSubRef.current.remove();
+      timeUpdateSubRef.current = null;
+    }
+    activePlayerRef.current = player;
+    if (player) {
+      setPlaybackTime({ currentTime: player.currentTime ?? 0, duration: player.duration ?? 0 });
+      timeUpdateSubRef.current = player.addListener('timeUpdate', (payload: { currentTime: number }) => {
+        setPlaybackTime({ currentTime: payload.currentTime, duration: player.duration ?? 0 });
+      });
+    } else {
+      setPlaybackTime({ currentTime: 0, duration: 0 });
+    }
+  };
+
+  const handleSeek = (fraction: number) => {
+    const player = activePlayerRef.current;
+    if (player && playbackTime.duration > 0) {
+      const newTime = fraction * playbackTime.duration;
+      player.currentTime = newTime;
+      setPlaybackTime((prev) => ({ ...prev, currentTime: newTime }));
+    }
+  };
 
   const onViewableItemsChanged = useRef(({ viewableItems }: any) => {
     if (viewableItems.length > 0) {
@@ -120,6 +223,7 @@ export default function PlayerScreen() {
 
   const currentEp = drama.episodes[currentIndex];
   const isUnlocked = currentEp.isUnlocked;
+  const progressFraction = playbackTime.duration > 0 ? playbackTime.currentTime / playbackTime.duration : 0;
 
   const handleLike = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
@@ -162,6 +266,7 @@ export default function PlayerScreen() {
               isActive={index === currentIndex}
               isUnlocked={item.isUnlocked}
               onNeedAd={() => setShowAdWall(true)}
+              onActivePlayerReady={onActivePlayerReady}
             />
           </View>
         )}
@@ -170,14 +275,14 @@ export default function PlayerScreen() {
       {/* Top Bar Overlay */}
       <SafeAreaView style={styles.topBar}>
         <Pressable onPress={() => router.back()} hitSlop={12} style={styles.iconButton}>
-          <FontAwesome5 name="chevron-left" size={20} color={colors.dark.foreground} />
+          <FontAwesome5 name="chevron-left" solid size={20} color={colors.dark.foreground} />
         </Pressable>
         <View style={styles.topRight}>
           <Pressable style={styles.iconButton}>
-            <FontAwesome5 name="search" size={20} color={colors.dark.foreground} />
+            <FontAwesome5 name="search" solid size={20} color={colors.dark.foreground} />
           </Pressable>
           <Pressable style={styles.rewardButton} onPress={() => setShowAdWall(true)}>
-            <FontAwesome5 name="gift" size={16} color={colors.dark.accent} />
+            <FontAwesome5 name="gift" solid size={16} color={colors.dark.accent} />
           </Pressable>
         </View>
       </SafeAreaView>
@@ -185,29 +290,39 @@ export default function PlayerScreen() {
       {/* Right Action Rail Overlay */}
       <View style={styles.actionRail}>
         <Pressable style={styles.actionItem} onPress={handleLike}>
-          <FontAwesome5 name="heart" solid={likes[currentEp.episodeNumber]} size={28} color={likes[currentEp.episodeNumber] ? colors.dark.primary : colors.dark.foreground} />
+          <View style={[styles.actionIconWrap, likes[currentEp.episodeNumber] && styles.actionIconWrapActive]}>
+            <FontAwesome5 name="heart" solid size={24} color={likes[currentEp.episodeNumber] ? colors.dark.primary : colors.dark.foreground} />
+          </View>
           <Text style={styles.actionText}>Like</Text>
         </Pressable>
         <Pressable style={styles.actionItem}>
-          <FontAwesome5 name="bookmark" size={28} color={colors.dark.foreground} />
+          <View style={styles.actionIconWrap}>
+            <FontAwesome5 name="bookmark" solid size={24} color={colors.dark.foreground} />
+          </View>
           <Text style={styles.actionText}>Save</Text>
         </Pressable>
         <Pressable style={styles.actionItem} onPress={() => setShowDrawer(true)}>
-          <FontAwesome5 name="list-ul" size={28} color={colors.dark.foreground} />
+          <View style={styles.actionIconWrap}>
+            <FontAwesome5 name="list-ul" solid size={24} color={colors.dark.foreground} />
+          </View>
           <Text style={styles.actionText}>Episodes</Text>
         </Pressable>
         <Pressable style={styles.actionItem}>
-          <FontAwesome5 name="share" size={28} color={colors.dark.foreground} />
+          <View style={styles.actionIconWrap}>
+            <FontAwesome5 name="share" solid size={24} color={colors.dark.foreground} />
+          </View>
           <Text style={styles.actionText}>Share</Text>
         </Pressable>
         <Pressable style={styles.actionItem} onPress={() => setShowReport(true)}>
-          <FontAwesome5 name="flag" size={24} color={colors.dark.secondaryForeground} />
+          <View style={styles.actionIconWrap}>
+            <FontAwesome5 name="flag" solid size={20} color={colors.dark.secondaryForeground} />
+          </View>
         </Pressable>
       </View>
 
       {/* Bottom Info Overlay */}
-      <SafeAreaView style={styles.bottomInfo} pointerEvents="none">
-        <View style={styles.badgeRow}>
+      <SafeAreaView style={styles.bottomInfo}>
+        <View style={styles.badgeRow} pointerEvents="none">
           {isUnlocked ? (
             <View style={styles.freeBadge}>
               <Text style={styles.freeText}>Unlocked</Text>
@@ -218,13 +333,10 @@ export default function PlayerScreen() {
             </View>
           )}
         </View>
-        <Text style={styles.titleText}>{drama.title}</Text>
-        <Text style={styles.epText}>Episode {currentEp.episodeNumber} / {drama.episodes.length}</Text>
+        <Text style={styles.titleText} pointerEvents="none">{drama.title}</Text>
+        <Text style={styles.epText} pointerEvents="none">Episode {currentEp.episodeNumber} / {drama.episodes.length}</Text>
 
-        {/* Fake Progress Bar */}
-        <View style={styles.progressBarBg}>
-          <View style={[styles.progressBarFill, { width: '30%' }]} />
-        </View>
+        <ProgressBar progress={progressFraction} onSeek={handleSeek} disabled={!isUnlocked} />
       </SafeAreaView>
 
       <AdWallModal
@@ -323,15 +435,26 @@ const styles = StyleSheet.create({
   },
   actionRail: {
     position: 'absolute',
-    right: 16,
-    bottom: 120,
+    right: 12,
+    bottom: 130,
     alignItems: 'center',
-    gap: 24,
+    gap: 20,
     zIndex: 10,
   },
   actionItem: {
     alignItems: 'center',
     gap: 6,
+  },
+  actionIconWrap: {
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0,0,0,0.35)',
+  },
+  actionIconWrapActive: {
+    backgroundColor: 'rgba(244,63,94,0.18)',
   },
   actionText: {
     color: colors.dark.foreground,
@@ -347,7 +470,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     paddingHorizontal: 16,
-    paddingBottom: 24,
+    paddingBottom: 16,
     paddingTop: 48,
     zIndex: 5,
   },
@@ -380,14 +503,34 @@ const styles = StyleSheet.create({
     fontSize: 14,
     marginBottom: 16,
   },
+  progressHitArea: {
+    height: 24,
+    justifyContent: 'center',
+  },
   progressBarBg: {
     height: 4,
-    backgroundColor: colors.dark.secondaryForeground,
+    backgroundColor: 'rgba(255,255,255,0.3)',
     borderRadius: 2,
     overflow: 'hidden',
   },
   progressBarFill: {
     height: '100%',
     backgroundColor: colors.dark.primary,
+  },
+  progressHandle: {
+    position: 'absolute',
+    top: 6,
+    width: 12,
+    height: 12,
+    borderRadius: 6,
+    backgroundColor: colors.dark.primary,
+    borderWidth: 2,
+    borderColor: '#fff',
+  },
+  progressHandleActive: {
+    width: 16,
+    height: 16,
+    borderRadius: 8,
+    top: 4,
   },
 });

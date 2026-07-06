@@ -40,7 +40,7 @@ export default function ReportSheet({ visible, onClose }: ReportSheetProps) {
             >
               <View style={styles.checkbox}>
                 {selected === reason && (
-                  <FontAwesome5 name="check" size={12} color={colors.dark.primaryForeground} />
+                  <FontAwesome5 name="check" solid size={12} color={colors.dark.primaryForeground} />
                 )}
               </View>
               <Text style={styles.reasonText}>{reason}</Text>

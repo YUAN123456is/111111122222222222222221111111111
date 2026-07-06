@@ -2,3 +2,4 @@
 - [Artifact workflow naming](artifact-workflow-names.md) — restart_workflow needs the full registered name, not the artifact slug.
 - [Expo API client base URL](expo-api-client-base-url.md) — Expo bypasses the shared proxy, so generated API hooks need setBaseUrl(EXPO_PUBLIC_DOMAIN) at module top level.
 - [Express route ordering & React hooks-order](express-route-ordering-and-hooks-order.md) — static routes must precede :param routes; all hooks must precede early loading/error returns.
+- [FontAwesome5 Regular font crash](expo-fontawesome5-regular-crash.md) — always pass explicit `solid`/`brand` prop on `<FontAwesome5>`; default (Regular) font isn't bundled and crashes on native.

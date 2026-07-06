@@ -51,7 +51,7 @@ export default function Profile() {
     <View style={styles.container}>
       <View style={styles.header}>
         <Pressable onPress={() => router.back()} style={styles.backButton}>
-          <FontAwesome5 name="chevron-left" size={20} color={colors.dark.foreground} />
+          <FontAwesome5 name="chevron-left" solid size={20} color={colors.dark.foreground} />
         </Pressable>
         <Text style={styles.title}>Profile</Text>
         <View style={styles.placeholder} />
@@ -62,7 +62,7 @@ export default function Profile() {
           <Text style={styles.sectionTitle}>Account</Text>
           <View style={styles.card}>
             <View style={styles.row}>
-              <FontAwesome5 name="user-circle" size={24} color={colors.dark.secondaryForeground} />
+              <FontAwesome5 name="user-circle" solid size={24} color={colors.dark.secondaryForeground} />
               <Text style={styles.rowText}>
                 Signed in as {provider === "guest" ? "Guest" : provider}
               </Text>
@@ -100,7 +100,7 @@ export default function Profile() {
               <Text style={styles.menuText}>Language</Text>
               <View style={styles.menuRight}>
                 <Text style={styles.menuValue}>{language}</Text>
-                <FontAwesome5 name="chevron-right" size={12} color={colors.dark.secondaryForeground} />
+                <FontAwesome5 name="chevron-right" solid size={12} color={colors.dark.secondaryForeground} />
               </View>
             </Pressable>
           </View>
@@ -111,17 +111,17 @@ export default function Profile() {
           <View style={styles.card}>
             <Pressable style={styles.menuRow}>
               <Text style={styles.menuText}>Report a problem</Text>
-              <FontAwesome5 name="chevron-right" size={12} color={colors.dark.secondaryForeground} />
+              <FontAwesome5 name="chevron-right" solid size={12} color={colors.dark.secondaryForeground} />
             </Pressable>
             <View style={styles.divider} />
             <Pressable style={styles.menuRow} onPress={() => openLink("https://example.com/privacy")}>
               <Text style={styles.menuText}>Privacy Policy</Text>
-              <FontAwesome5 name="chevron-right" size={12} color={colors.dark.secondaryForeground} />
+              <FontAwesome5 name="chevron-right" solid size={12} color={colors.dark.secondaryForeground} />
             </Pressable>
             <View style={styles.divider} />
             <Pressable style={styles.menuRow} onPress={() => openLink("https://example.com/terms")}>
               <Text style={styles.menuText}>Terms of Service</Text>
-              <FontAwesome5 name="chevron-right" size={12} color={colors.dark.secondaryForeground} />
+              <FontAwesome5 name="chevron-right" solid size={12} color={colors.dark.secondaryForeground} />
             </Pressable>
           </View>
         </View>
@@ -143,7 +143,7 @@ export default function Profile() {
                 onPress={() => { setLanguage(lang); setLangModalVisible(false); }}
               >
                 <Text style={[styles.langText, language === lang && styles.langTextActive]}>{lang}</Text>
-                {language === lang && <FontAwesome5 name="check" size={14} color={colors.dark.primary} />}
+                {language === lang && <FontAwesome5 name="check" solid size={14} color={colors.dark.primary} />}
               </Pressable>
             ))}
           </View>

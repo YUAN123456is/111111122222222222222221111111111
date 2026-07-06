@@ -25,7 +25,7 @@ export default function EpisodeDrawer({ visible, onClose, episodes, currentEpiso
           <View style={styles.header}>
             <Text style={styles.title}>Episodes</Text>
             <Pressable onPress={onClose}>
-              <FontAwesome5 name="times" size={20} color={colors.dark.secondaryForeground} />
+              <FontAwesome5 name="times" solid size={20} color={colors.dark.secondaryForeground} />
             </Pressable>
           </View>
 
@@ -57,6 +57,7 @@ export default function EpisodeDrawer({ visible, onClose, episodes, currentEpiso
                   {!isUnlocked && (
                     <FontAwesome5
                       name="lock"
+                      solid
                       size={10}
                       color={colors.dark.mutedForeground}
                       style={styles.lockIcon}

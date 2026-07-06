@@ -22,15 +22,15 @@ export default function Login() {
       </View>
       <View style={styles.buttonContainer}>
         <Pressable style={styles.button} onPress={() => handleLogin("apple")}>
-          <FontAwesome5 name="apple" size={20} color={colors.dark.foreground} style={styles.icon} />
+          <FontAwesome5 name="apple" brand size={20} color={colors.dark.foreground} style={styles.icon} />
           <Text style={styles.buttonText}>Sign in with Apple</Text>
         </Pressable>
         <Pressable style={styles.button} onPress={() => handleLogin("google")}>
-          <FontAwesome5 name="google" size={20} color={colors.dark.foreground} style={styles.icon} />
+          <FontAwesome5 name="google" brand size={20} color={colors.dark.foreground} style={styles.icon} />
           <Text style={styles.buttonText}>Sign in with Google</Text>
         </Pressable>
         <Pressable style={styles.button} onPress={() => handleLogin("guest")}>
-          <FontAwesome5 name="user" size={20} color={colors.dark.foreground} style={styles.icon} />
+          <FontAwesome5 name="user" solid size={20} color={colors.dark.foreground} style={styles.icon} />
           <Text style={styles.buttonText}>Continue as Guest</Text>
         </Pressable>
       </View>

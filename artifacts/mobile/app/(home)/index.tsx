@@ -55,7 +55,7 @@ export default function Home() {
       <View style={styles.header}>
         <Text style={styles.logo}>DramaVerse</Text>
         <Pressable onPress={() => router.push("/profile")} hitSlop={12}>
-          <FontAwesome5 name="user-circle" size={24} color={colors.dark.foreground} />
+          <FontAwesome5 name="user-circle" solid size={24} color={colors.dark.foreground} />
         </Pressable>
       </View>
 

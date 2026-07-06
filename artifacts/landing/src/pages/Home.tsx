@@ -28,11 +28,8 @@ export default function Home() {
       {/* Navbar */}
       <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-white/10 transition-all duration-300">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          <div className="font-bold text-2xl tracking-tighter text-white flex items-center gap-2">
-            <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
-              <Play className="w-4 h-4 text-white fill-white ms-0.5" />
-            </div>
-            DramaVerse
+          <div className="flex items-center">
+            <img src={`${import.meta.env.BASE_URL}images/logo-wordmark.png`} alt="Nebula TV" className="h-8 w-auto" />
           </div>
           <Button variant="default" className="rounded-full px-6 font-semibold bg-primary hover:bg-primary/90 text-white shadow-[0_0_15px_rgba(225,29,72,0.5)]">
             {t("downloadNow")}
@@ -286,11 +283,8 @@ export default function Home() {
       {/* Footer */}
       <footer className="bg-zinc-950 border-t border-white/10 pt-16 pb-8">
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-2 font-bold text-2xl tracking-tighter text-white">
-            <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
-              <Play className="w-4 h-4 text-white fill-white ms-0.5" />
-            </div>
-            DramaVerse
+          <div className="flex items-center">
+            <img src={`${import.meta.env.BASE_URL}images/logo-wordmark.png`} alt="Nebula TV" className="h-8 w-auto" />
           </div>
           
           <div className="flex items-center gap-4">

@@ -54,14 +54,14 @@ export default function Search() {
           <FontAwesome5 name="search" solid size={40} color={colors.dark.secondary} />
           <Text style={styles.hintText}>{t("search.hint")}</Text>
         </View>
-      ) : (dramas ?? []).length === 0 ? (
+      ) : (dramas ?? []).filter((d) => d.totalEpisodes > 0).length === 0 ? (
         <View style={styles.centered}>
           <FontAwesome5 name="frown" regular size={40} color={colors.dark.secondary} />
           <Text style={styles.hintText}>{t("search.noResults", { q: submittedQuery })}</Text>
         </View>
       ) : (
         <FlatList
-          data={dramas}
+          data={(dramas ?? []).filter((d) => d.totalEpisodes > 0)}
           keyExtractor={(item) => item.id}
           numColumns={2}
           contentContainerStyle={styles.grid}

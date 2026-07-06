@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from "react";
 import { View, Text, StyleSheet, ScrollView, Pressable, Image, SafeAreaView, ActivityIndicator } from "react-native";
+import logoWordmark from "@/assets/images/logo-wordmark.png";
 import { useRouter } from "expo-router";
 import { useListDramas, useGetHomeFeed } from "@workspace/api-client-react";
 import { useDrama } from "@/context/DramaContext";
@@ -24,7 +25,8 @@ export default function Home() {
 
   const filtered = useMemo(() => {
     if (!dramas) return [];
-    return activeCategory === t("home.all") ? dramas : dramas.filter((d) => d.tags.includes(activeCategory));
+    const withEpisodes = dramas.filter((d) => d.totalEpisodes > 0);
+    return activeCategory === t("home.all") ? withEpisodes : withEpisodes.filter((d) => d.tags.includes(activeCategory));
   }, [dramas, activeCategory, t]);
 
   const historyDramas = useMemo(() => {
@@ -56,7 +58,7 @@ export default function Home() {
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.header}>
-        <Text style={styles.logo}>{t("home.logo")}</Text>
+        <Image source={logoWordmark} style={styles.logo} resizeMode="contain" accessibilityLabel={t("home.logo")} />
         <View style={styles.headerActions}>
           <Pressable onPress={() => router.push("/search")} hitSlop={12}>
             <FontAwesome5 name="search" solid size={22} color={colors.dark.foreground} />
@@ -152,7 +154,7 @@ const styles = StyleSheet.create({
   retryButtonText: { color: colors.dark.primaryForeground, fontWeight: "600" },
   header: { flexDirection: "row", justifyContent: "space-between", alignItems: "center", paddingHorizontal: 16, paddingVertical: 12 },
   headerActions: { flexDirection: "row", alignItems: "center", gap: 16 },
-  logo: { fontSize: 24, fontWeight: "bold", color: colors.dark.primary },
+  logo: { width: 115, height: 32 },
   sectionTitle: { fontSize: 18, fontWeight: "bold", color: colors.dark.foreground, marginLeft: 16, marginBottom: 12 },
   historySection: { paddingVertical: 12 },
   historyScroll: { paddingHorizontal: 16, gap: 12 },

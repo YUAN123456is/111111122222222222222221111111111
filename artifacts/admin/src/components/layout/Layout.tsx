@@ -1,7 +1,5 @@
 import { ReactNode } from "react";
 import { Sidebar } from "./Sidebar";
-import { Link } from "wouter";
-import { Film } from "lucide-react";
 
 export function Layout({ children }: { children: ReactNode }) {
   return (
@@ -9,12 +7,7 @@ export function Layout({ children }: { children: ReactNode }) {
       <Sidebar />
       <div className="flex-1 flex flex-col h-[100dvh] overflow-hidden">
         <header className="h-16 border-b border-border bg-card flex items-center px-4 md:hidden">
-          <div className="flex items-center gap-2">
-            <div className="bg-primary text-primary-foreground p-1.5 rounded-md">
-              <Film size={18} />
-            </div>
-            <span className="font-display font-bold text-lg tracking-tight">DramaVerse</span>
-          </div>
+          <img src={`${import.meta.env.BASE_URL}logo-wordmark.png`} alt="Nebula TV" className="h-7 w-auto" />
         </header>
         <main className="flex-1 overflow-auto bg-muted/20 p-4 md:p-8">
           <div className="max-w-6xl mx-auto h-full w-full">

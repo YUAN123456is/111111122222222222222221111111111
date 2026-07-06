@@ -221,7 +221,19 @@ export default function PlayerScreen() {
     return <View style={styles.container}><Text style={styles.errorText}>Drama not found</Text></View>;
   }
 
-  const currentEp = drama.episodes[currentIndex];
+  if (drama.episodes.length === 0) {
+    return (
+      <View style={[styles.container, styles.centered]}>
+        <Pressable onPress={() => router.back()} hitSlop={12} style={styles.backOnlyButton}>
+          <FontAwesome5 name="chevron-left" solid size={20} color={colors.dark.foreground} />
+        </Pressable>
+        <Text style={styles.errorText}>No episodes available yet</Text>
+      </View>
+    );
+  }
+
+  const safeIndex = Math.min(Math.max(currentIndex, 0), drama.episodes.length - 1);
+  const currentEp = drama.episodes[safeIndex];
   const isUnlocked = currentEp.isUnlocked;
   const progressFraction = playbackTime.duration > 0 ? playbackTime.currentTime / playbackTime.duration : 0;
 
@@ -253,7 +265,7 @@ export default function PlayerScreen() {
         keyExtractor={item => item.episodeNumber.toString()}
         pagingEnabled
         showsVerticalScrollIndicator={false}
-        initialScrollIndex={currentIndex}
+        initialScrollIndex={safeIndex}
         getItemLayout={(data, index) => ({ length: WINDOW_HEIGHT, offset: WINDOW_HEIGHT * index, index })}
         onViewableItemsChanged={onViewableItemsChanged}
         viewabilityConfig={viewabilityConfig}
@@ -376,6 +388,12 @@ const styles = StyleSheet.create({
   centered: {
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  backOnlyButton: {
+    position: 'absolute',
+    top: 56,
+    left: 16,
+    padding: 8,
   },
   videoContainer: {
     flex: 1,

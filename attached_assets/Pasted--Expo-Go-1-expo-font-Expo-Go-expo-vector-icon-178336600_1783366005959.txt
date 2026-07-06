@@ -1,0 +1,67 @@
+💡 为什么在 Expo Go 里会出现这两个问题？
+1. 图标变成方框 [] 的根本原因：未等待 expo-font 异步加载
+在 Expo Go 中，如果你用了 @expo/vector-icons（比如 Ionicons、FontAwesome）或者自定义的图标字体，必须在 App 启动的最最前面，使用 useFonts 钩子将字体异步加载完毕，才能渲染页面！
+如果 AI 写的代码里“没等字体加载好，就直接把页面展示出来了”，系统找不到这些图标对应的字体映射，就会全部显示成退化的方框 [] 或问号！
+
+2. 顶头重叠的根本原因：未获取 useSafeAreaInsets
+React Native 默认的 <View> 容器是完全贴着屏幕最上缘（Y轴 = 0）渲染的。在 iOS 刘海屏和 Android 挖孔屏上，只要没有用 Expo 官方推荐的 react-native-safe-area-context 来获取顶部状态栏的高度，顶部的返回按钮和右侧的操作按钮绝对会和手机时间、电量叠在一起！
+
+🛠️ 直接发给 AI 开发者的“Expo 专版修复话术”
+你可以把下面这段针对性极强的指令复制发给你的 AI 编程助手（比如 Cursor / ChatGPT / Claude），它只需要修改几行配置代码，你在 Expo Go 里摇一摇刷新（Reload），这两个问题瞬间就能解决：
+
+【开发任务提示词：修复 Expo Go 环境下的状态栏重叠与图标字体加载 Bug】
+
+我们当前项目使用的是 React Native + Expo Go 环境进行真机调试。现阶段发现全屏播放页（Player View）存在顶部按钮重叠系统状态栏，以及所有图标全部显示为方框 [] 的严重问题。请立即按照 Expo 官方最佳实践 进行以下两处代码重构：
+
+1. 修复顶部安全区域重叠问题（Safe Area Fix）：
+
+请确保在项目中引入了 Expo 推荐的 react-native-safe-area-context 库。
+
+在短剧播放页（或者顶部的悬浮控制栏 UI 组件）中，使用 useSafeAreaInsets Hook 获取安全区域间距：
+
+TypeScript
+
+
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+// Component 内部:
+const insets = useSafeAreaInsets();
+为顶部控制栏容器（放置“返回按钮”和右上角功能的容器）添加样式：paddingTop: Math.max(insets.top, 20)，确保悬浮按钮自动下沉至 iOS 刘海屏和 Android 挖孔屏/状态栏的安全区域下方，绝不与系统时间和电量显示重叠。
+
+2. 修复图标变方框 [] 的字体异步加载问题（Expo Icons Fix）：
+
+右侧互动栏（Like, Save, Episodes, Share）及顶部的图标在 Expo Go 中全部渲染失败成了方框 []，说明字体资源未正确异步预加载！
+
+修复逻辑：
+
+请检查 App 根组件（如 App.js / _layout.tsx / index.tsx）或使用 @expo/vector-icons 的组件中，是否使用了 expo-font 的 useFonts hook 或 Font.loadAsync()。
+
+必须保证字体加载完成前显示 SplashScreen（启动屏）或 Loading 动画！ 示例逻辑如下：
+
+TypeScript
+
+
+import { useFonts } from 'expo-font';
+import { Ionicons, MaterialIcons } from '@expo/vector-icons';
+import * as SplashScreen from 'expo-splash-screen';
+import { useEffect } from 'react';
+
+export default function App() {
+  const [fontsLoaded] = useFonts({
+    ...Ionicons.font,
+    ...MaterialIcons.font,
+    // 如果有自定义 Iconfont 也在这里引入
+  });
+
+  useEffect(() => {
+    if (fontsLoaded) {
+      SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded]);
+
+  if (!fontsLoaded) {
+    return null; // 或者返回一个 <ActivityIndicator />，绝不能在字体没好之前渲染页面！
+  }
+
+  return <YourAppRoot />;
+}
+如果不想处理复杂的字体异步预加载，或者追求极致的渲染性能，请直接把右侧操作栏和顶部的这几个核心按钮图标，替换为本地静态的原生 SVG 组件（使用 react-native-svg）或 .png 切图（<Image source="{require(...)}"/>），这样能保证在任何机型和环境中 100% 不再发生图标乱码！

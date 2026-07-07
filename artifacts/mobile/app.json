@@ -16,7 +16,11 @@
     "android": {
       "backgroundColor": "#000000",
       "package": "com.nebulatv.app",
-      "versionCode": 1
+      "versionCode": 1,
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/icon.png",
+        "backgroundColor": "#000000"
+      }
     },
     "web": {
       "favicon": "./assets/images/icon.png"

@@ -621,7 +621,7 @@ importers:
         specifier: 0.81.5
         version: 0.81.5(@babel/core@7.29.7)(@types/react@19.1.17)(react@19.1.0)
       react-native-google-mobile-ads:
-        specifier: ^16.4.0
+        specifier: ^16.0.0
         version: 16.4.0(expo@54.0.35)(react@19.1.0)
     devDependencies:
       '@babel/core':

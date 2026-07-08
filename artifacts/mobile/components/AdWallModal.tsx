@@ -2,6 +2,7 @@
 import { View, Text, StyleSheet, Pressable, Modal, ActivityIndicator } from "react-native";
 import { useUnlockEpisodes } from "@workspace/api-client-react";
 import { useRewardedAd } from "@/hooks/useRewardedAd";
+import { useLocale } from "@/context/LocaleContext";
 import colors from "@/constants/colors";
 import * as Haptics from "expo-haptics";
 
@@ -18,22 +19,20 @@ interface AdWallModalProps {
 export default function AdWallModal({ visible, onClose, onSuccess, userId, dramaId, episode, episodesPerAdUnlock }: AdWallModalProps) {
   const unlockEpisodes = useUnlockEpisodes();
   const { loaded: adLoaded, showing: adShowing, showAd } = useRewardedAd();
+  const { t } = useLocale();
   const [state, setState] = useState<"default" | "loading" | "error" | "limit_reached">("default");
 
   const handleWatchAd = async () => {
     setState("loading");
 
     try {
-      // Show real AdMob rewarded video
       const rewardEarned = await showAd();
 
       if (!rewardEarned) {
-        // User closed ad before earning reward (or ad failed)
         setState("default");
         return;
       }
 
-      // User earned reward - unlock episodes via backend
       const result = await unlockEpisodes.mutateAsync({
         data: { userId, dramaId, currentEpisodeNumber: episode },
       });
@@ -56,20 +55,20 @@ export default function AdWallModal({ visible, onClose, onSuccess, userId, drama
     <Modal visible={visible} transparent animationType="slide">
       <View style={styles.overlay}>
         <View style={styles.sheet}>
-          <Text style={styles.title}>Unlock Episodes</Text>
+          <Text style={styles.title}>{t("adwall.title")}</Text>
           <Text style={styles.subtitle}>
-            Watch 1 short ad to unlock episodes {episode}–{endRange} for free.
+            {t("adwall.subtitle", { from: episode, to: endRange })}
           </Text>
 
           {state === "limit_reached" ? (
             <View style={styles.disabledButton}>
-              <Text style={styles.disabledButtonText}>Daily limit reached. Come back tomorrow!</Text>
+              <Text style={styles.disabledButtonText}>{t("adwall.dailyLimit")}</Text>
             </View>
           ) : state === "error" ? (
             <View style={styles.errorContainer}>
-              <Text style={styles.errorText}>Ad unavailable, please try again later</Text>
+              <Text style={styles.errorText}>{t("adwall.adUnavailable")}</Text>
               <Pressable style={styles.primaryButton} onPress={() => setState("default")}>
-                <Text style={styles.primaryButtonText}>Try Again</Text>
+                <Text style={styles.primaryButtonText}>{t("adwall.tryAgain")}</Text>
               </Pressable>
             </View>
           ) : (
@@ -82,14 +81,14 @@ export default function AdWallModal({ visible, onClose, onSuccess, userId, drama
                 <ActivityIndicator color={colors.dark.primaryForeground} />
               ) : (
                 <Text style={styles.primaryButtonText}>
-                  {adLoaded ? "Watch Ad to Unlock" : "Loading Ad..."}
+                  {adLoaded ? t("adwall.watchAd") : t("adwall.loadingAd")}
                 </Text>
               )}
             </Pressable>
           )}
 
           <Pressable style={styles.ghostButton} onPress={onClose}>
-            <Text style={styles.ghostButtonText}>Not now</Text>
+            <Text style={styles.ghostButtonText}>{t("adwall.notNow")}</Text>
           </Pressable>
         </View>
       </View>

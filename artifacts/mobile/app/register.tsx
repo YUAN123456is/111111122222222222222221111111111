@@ -9,6 +9,7 @@ import {
   KeyboardAvoidingView,
   Platform,
   ScrollView,
+  Alert,
 } from "react-native";
 import { useRouter } from "expo-router";
 import { useAuth } from "@/context/AuthContext";
@@ -49,6 +50,7 @@ export default function Register() {
     setLoading(true);
     try {
       await registerWithEmail(email.trim(), password, displayName.trim() || undefined);
+      Alert.alert(t("register.success"));
       router.replace("/(home)");
     } catch {
       // Error handled in AuthContext

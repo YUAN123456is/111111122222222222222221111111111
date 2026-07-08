@@ -1,6 +1,7 @@
-import React from "react";
+﻿import React from "react";
 import { View, Text, StyleSheet, Pressable, Modal, FlatList } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
+import { useLocale } from "@/context/LocaleContext";
 import colors from "@/constants/colors";
 
 interface DrawerEpisode {
@@ -17,13 +18,14 @@ interface EpisodeDrawerProps {
 }
 
 export default function EpisodeDrawer({ visible, onClose, episodes, currentEpisode, onSelectEpisode }: EpisodeDrawerProps) {
+  const { t } = useLocale();
   return (
     <Modal visible={visible} transparent animationType="slide">
       <View style={styles.overlay}>
         <Pressable style={styles.backdrop} onPress={onClose} />
         <View style={styles.sheet}>
           <View style={styles.header}>
-            <Text style={styles.title}>Episodes</Text>
+            <Text style={styles.title}>{t("episodes.title")}</Text>
             <Pressable onPress={onClose}>
               <FontAwesome5 name="times" solid size={20} color={colors.dark.secondaryForeground} />
             </Pressable>
@@ -138,3 +140,4 @@ const styles = StyleSheet.create({
     right: 4,
   },
 });
+

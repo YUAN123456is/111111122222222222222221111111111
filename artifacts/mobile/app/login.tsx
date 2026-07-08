@@ -191,6 +191,17 @@ export default function Login() {
                 )}
               </Pressable>
 
+              <Pressable
+                onPress={() =>
+                  Alert.alert(
+                    t("login.forgotPassword"),
+                    t("login.forgotPasswordMsg"),
+                  )
+                }
+              >
+                <Text style={styles.forgotLink}>{t("login.forgotPassword")}</Text>
+              </Pressable>
+
               <Pressable onPress={() => router.push("/register")} disabled={loading}>
                 <Text style={styles.registerLink}>{t("login.noAccount")}</Text>
               </Pressable>
@@ -298,6 +309,12 @@ const styles = StyleSheet.create({
     color: colors.dark.primaryForeground,
     fontSize: 16,
     fontWeight: "600",
+  },
+  forgotLink: {
+    color: colors.dark.secondaryForeground,
+    fontSize: 14,
+    textAlign: "center",
+    marginTop: 4,
   },
   registerLink: {
     color: colors.dark.primary,

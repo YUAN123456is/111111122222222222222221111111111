@@ -27,8 +27,21 @@ export default function Profile() {
   }).filter(h => h.drama);
 
   const handleSignOut = async () => {
-    await signOut();
-    router.replace("/login");
+    Alert.alert(
+      t("profile.signOutConfirmTitle"),
+      t("profile.signOutConfirmMsg"),
+      [
+        { text: t("profile.cancel"), style: "cancel" },
+        {
+          text: t("profile.signOutConfirm"),
+          style: "destructive",
+          onPress: async () => {
+            await signOut();
+            router.replace("/login");
+          },
+        },
+      ],
+    );
   };
 
   const handleDeleteAccount = () => {
@@ -41,6 +54,14 @@ export default function Profile() {
           text: t("profile.delete"),
           style: "destructive",
           onPress: async () => {
+            try {
+              if (userId) {
+                const apiUrl = `https://${process.env.EXPO_PUBLIC_DOMAIN}/api/users/${userId}`;
+                await fetch(apiUrl, { method: "DELETE" });
+              }
+            } catch {
+              // Best-effort delete; still sign out
+            }
             await signOut();
             router.replace("/login");
           }
@@ -517,3 +538,5 @@ const styles = StyleSheet.create({
     lineHeight: 22,
   },
 });
+
+

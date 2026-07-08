@@ -1,4 +1,4 @@
-import { Router, type IRouter } from "express";
+﻿import { Router, type IRouter } from "express";
 import { eq, and } from "drizzle-orm";
 import { scrypt, randomBytes, timingSafeEqual } from "node:crypto";
 import { db, usersTable } from "@workspace/db";
@@ -113,6 +113,23 @@ router.post("/users/login", async (req, res): Promise<void> => {
   }
 
   res.json(RegisterUserResponse.parse(user));
+});
+
+router.delete("/users/:userId", async (req, res): Promise<void> => {
+  const { userId } = req.params;
+  if (!userId) {
+    res.status(400).json({ error: "userId is required" });
+    return;
+  }
+
+  const [existing] = await db.select().from(usersTable).where(eq(usersTable.id, userId));
+  if (!existing) {
+    res.status(404).json({ error: "User not found" });
+    return;
+  }
+
+  await db.delete(usersTable).where(eq(usersTable.id, userId));
+  res.json({ success: true });
 });
 
 export default router;

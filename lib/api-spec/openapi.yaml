@@ -56,6 +56,27 @@ paths:
               schema:
                 $ref: "#/components/schemas/GeoLocale"
 
+  /users/login:
+    post:
+      operationId: loginUser
+      tags: [users]
+      summary: Login with email and password
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginInput"
+      responses:
+        "200":
+          description: The user record
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        "401":
+          description: Invalid credentials
+
   /config/global:
     get:
       operationId: getGlobalConfig
@@ -361,7 +382,7 @@ paths:
     post:
       operationId: registerUser
       tags: [users]
-      summary: Register or fetch a device-based user (Apple/Google/Guest)
+      summary: Register or authenticate a user (Apple/Google/Guest/Email)
       requestBody:
         required: true
         content:
@@ -1008,7 +1029,11 @@ components:
           type: string
         authProvider:
           type: string
-          enum: [apple, google, guest]
+          enum: [apple, google, guest, email]
+        email:
+          type: string
+        displayName:
+          type: string
         createdAt:
           type: string
           format: date-time
@@ -1016,7 +1041,6 @@ components:
     UserRegisterInput:
       type: object
       required:
-        - deviceId
         - authProvider
       properties:
         deviceId:
@@ -1024,7 +1048,27 @@ components:
           minLength: 1
         authProvider:
           type: string
-          enum: [apple, google, guest]
+          enum: [apple, google, guest, email]
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+          minLength: 6
+        displayName:
+          type: string
+
+    LoginInput:
+      type: object
+      required:
+        - email
+        - password
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
 
     DashboardSummary:
       type: object

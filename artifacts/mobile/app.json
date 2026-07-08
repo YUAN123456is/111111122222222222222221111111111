@@ -44,6 +44,8 @@
         }
       ],
       "expo-web-browser",
+      "expo-apple-authentication",
+      "expo-crypto",
       "expo-video",
       "expo-localization",
       [
@@ -58,6 +60,11 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": "a2f3985a-3e70-4a8f-b1a6-6ba867b5e9d7"
+      }
     }
   }
 }

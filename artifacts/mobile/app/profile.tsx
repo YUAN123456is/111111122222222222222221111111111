@@ -12,7 +12,7 @@ import * as WebBrowser from "expo-web-browser";
 
 export default function Profile() {
   const router = useRouter();
-  const { provider, signOut } = useAuth();
+  const { provider, userId, email, signOut } = useAuth();
   const { watchHistory, favorites } = useDrama();
   const { locale, setLocale, t } = useLocale();
   const { data: dramas } = useListDramas({ publishedOnly: true });
@@ -66,9 +66,14 @@ export default function Profile() {
           <View style={styles.card}>
             <View style={styles.row}>
               <FontAwesome5 name="user-circle" solid size={24} color={colors.dark.secondaryForeground} />
-              <Text style={styles.rowText}>
-                {t("profile.signedInAs", { provider: provider === "guest" ? t("profile.guest") : (provider ?? "") })}
-              </Text>
+              <View style={{ flex: 1, marginLeft: 12 }}>
+                <Text style={styles.rowText}>
+                  {t("profile.signedInAs", { provider: provider === "guest" ? t("profile.guest") : provider === "email" ? (email ?? "Email") : (provider ?? "") })}
+                </Text>
+                {userId && (
+                  <Text style={styles.userIdText}>ID: {userId.slice(-10).toUpperCase()}</Text>
+                )}
+              </View>
             </View>
             <Pressable style={styles.logoutButton} onPress={handleSignOut}>
               <Text style={styles.logoutText}>{t("profile.signOut")}</Text>
@@ -229,7 +234,11 @@ const styles = StyleSheet.create({
   rowText: {
     color: colors.dark.foreground,
     fontSize: 16,
-    marginLeft: 12,
+  },
+  userIdText: {
+    color: colors.dark.secondaryForeground,
+    fontSize: 12,
+    marginTop: 2,
   },
   logoutButton: {
     margin: 16,

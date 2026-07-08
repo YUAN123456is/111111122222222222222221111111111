@@ -1,5 +1,9 @@
-import { defineConfig } from "drizzle-kit";
+﻿import { defineConfig } from "drizzle-kit";
+import { fileURLToPath } from "url";
 import path from "path";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const connectionString = process.env.NEON_DATABASE_URL || process.env.DATABASE_URL;
 
@@ -10,7 +14,7 @@ if (!connectionString) {
 }
 
 export default defineConfig({
-  schema: path.join(__dirname, "./src/schema/index.ts"),
+  schema: "./src/schema/**/*.ts",
   dialect: "postgresql",
   dbCredentials: {
     url: connectionString,

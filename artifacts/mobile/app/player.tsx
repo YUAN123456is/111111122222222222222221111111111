@@ -3,6 +3,7 @@ import {
   View, Text, StyleSheet, Pressable, FlatList,
   Dimensions, ActivityIndicator
 } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useVideoPlayer, VideoView, VideoPlayer } from 'expo-video';
@@ -22,22 +23,42 @@ import ReportSheet from '@/components/ReportSheet';
 
 const { height: WINDOW_HEIGHT, width: WINDOW_WIDTH } = Dimensions.get('window');
 
+function getVirtualCount(seed: string, factor: number): string {
+  let h = 0;
+  for (let i = 0; i < seed.length; i++) {
+    h = (Math.imul(31, h) + seed.charCodeAt(i)) | 0;
+  }
+  const base = ((Math.abs(h) % 46) + 5) * 10000;
+  const count = Math.floor(base * factor);
+  return count >= 10000 ? `${(count / 10000).toFixed(1)}万` : `${count}`;
+}
+
 const SingleVideo = ({
-  url, isActive, isUnlocked, onNeedAd, onActivePlayerReady, previewText
+  url, isActive, isUnlocked, onNeedAd, onActivePlayerReady, previewText, onPlayToEnd
 }: {
   url: string, isActive: boolean, isUnlocked: boolean, onNeedAd: () => void,
-  onActivePlayerReady: (player: VideoPlayer | null) => void, previewText: string
+  onActivePlayerReady: (player: VideoPlayer | null) => void, previewText: string,
+  onPlayToEnd?: () => void
 }) => {
   const [manuallyPaused, setManuallyPaused] = useState(false);
   const [showPauseIcon, setShowPauseIcon] = useState(false);
 
   const player = useVideoPlayer(url, player => {
-    player.loop = true;
+    player.loop = false;
+    player.preservesPitch = true;
     player.timeUpdateEventInterval = 0.5;
     if (isActive && isUnlocked) {
       player.play();
     }
   });
+
+  useEffect(() => {
+    if (!onPlayToEnd) return;
+    const sub = player.addListener('playToEnd', () => {
+      if (isActive && isUnlocked) onPlayToEnd();
+    });
+    return () => sub.remove();
+  }, [player, isActive, isUnlocked, onPlayToEnd]);
 
   useEffect(() => {
     if (isActive) {
@@ -54,6 +75,7 @@ const SingleVideo = ({
   // Reset manual pause state whenever this slide becomes/stops being active.
   useEffect(() => {
     setManuallyPaused(false);
+    setShowPauseIcon(false);
   }, [isActive]);
 
   useEffect(() => {
@@ -77,9 +99,16 @@ const SingleVideo = ({
 
   const handleToggleTap = () => {
     if (!isActive || !isUnlocked) return;
-    setManuallyPaused(prev => !prev);
-    setShowPauseIcon(true);
-    setTimeout(() => setShowPauseIcon(false), 500);
+    setManuallyPaused(prev => {
+      const nowPaused = !prev;
+      setShowPauseIcon(true);
+      if (!nowPaused) {
+        // resuming — flash play icon then hide
+        setTimeout(() => setShowPauseIcon(false), 600);
+      }
+      // pausing — keep icon visible until next tap
+      return nowPaused;
+    });
   };
 
   return (
@@ -163,7 +192,19 @@ export default function PlayerScreen() {
   const [showDrawer, setShowDrawer] = useState(false);
   const [showReport, setShowReport] = useState(false);
   const [likes, setLikes] = useState<Record<number, boolean>>({});
+
+  // Load persisted likes for this drama
+  useEffect(() => {
+    AsyncStorage.getItem(`likes_${dramaId}`).then(data => {
+      if (data) setLikes(JSON.parse(data));
+      else setLikes({});
+    });
+  }, [dramaId]);
+
   const [playbackTime, setPlaybackTime] = useState({ currentTime: 0, duration: 0 });
+  const [playbackSpeed, setPlaybackSpeed] = useState(1);
+  const [showSpeedPicker, setShowSpeedPicker] = useState(false);
+  const SPEED_OPTIONS = [0.5, 0.75, 1, 1.25, 1.5, 2];
 
   const activePlayerRef = useRef<VideoPlayer | null>(null);
   const timeUpdateSubRef = useRef<{ remove: () => void } | null>(null);
@@ -175,12 +216,22 @@ export default function PlayerScreen() {
     }
     activePlayerRef.current = player;
     if (player) {
+      player.playbackRate = playbackSpeed;
       setPlaybackTime({ currentTime: player.currentTime ?? 0, duration: player.duration ?? 0 });
       timeUpdateSubRef.current = player.addListener('timeUpdate', (payload: { currentTime: number }) => {
         setPlaybackTime({ currentTime: payload.currentTime, duration: player.duration ?? 0 });
       });
     } else {
       setPlaybackTime({ currentTime: 0, duration: 0 });
+    }
+  };
+
+  const handleSpeedSelect = (speed: number) => {
+    setPlaybackSpeed(speed);
+    setShowSpeedPicker(false);
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    if (activePlayerRef.current) {
+      activePlayerRef.current.playbackRate = speed;
     }
   };
 
@@ -203,6 +254,8 @@ export default function PlayerScreen() {
 
   const viewabilityConfig = useRef({ itemVisiblePercentThreshold: 50 }).current;
   const flatListRef = useRef<FlatList>(null);
+  const [listHeight, setListHeight] = useState(WINDOW_HEIGHT);
+  const initialScrollDone = useRef(false);
 
   useEffect(() => {
     if (drama && dramaId && drama.episodes[currentIndex]) {
@@ -241,7 +294,11 @@ export default function PlayerScreen() {
 
   const handleLike = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-    setLikes(prev => ({ ...prev, [currentEp.episodeNumber]: !prev[currentEp.episodeNumber] }));
+    setLikes(prev => {
+      const next = { ...prev, [currentEp.episodeNumber]: !prev[currentEp.episodeNumber] };
+      AsyncStorage.setItem(`likes_${dramaId}`, JSON.stringify(next));
+      return next;
+    });
   };
 
   const handleAdSuccess = () => {
@@ -259,6 +316,18 @@ export default function PlayerScreen() {
     }
   };
 
+  const handlePlayToEnd = () => {
+    if (!drama) return;
+    const nextIndex = safeIndex + 1;
+    if (nextIndex >= drama.episodes.length) return;
+    const nextEp = drama.episodes[nextIndex];
+    setCurrentIndex(nextIndex);
+    flatListRef.current?.scrollToIndex({ index: nextIndex, animated: true });
+    if (!nextEp.isUnlocked) {
+      setShowAdWall(true);
+    }
+  };
+
   return (
     <View style={styles.container}>
       <FlatList
@@ -267,14 +336,30 @@ export default function PlayerScreen() {
         keyExtractor={item => item.episodeNumber.toString()}
         pagingEnabled
         showsVerticalScrollIndicator={false}
-        initialScrollIndex={safeIndex}
-        getItemLayout={(data, index) => ({ length: WINDOW_HEIGHT, offset: WINDOW_HEIGHT * index, index })}
+        getItemLayout={(data, index) => ({ length: listHeight, offset: listHeight * index, index })}
+        onLayout={e => {
+          const h = e.nativeEvent.layout.height;
+          if (h > 0 && h !== listHeight) {
+            setListHeight(h);
+            if (!initialScrollDone.current && safeIndex > 0) {
+              initialScrollDone.current = true;
+              setTimeout(() => {
+                flatListRef.current?.scrollToIndex({ index: safeIndex, animated: false });
+              }, 50);
+            }
+          } else if (!initialScrollDone.current && safeIndex > 0) {
+            initialScrollDone.current = true;
+            setTimeout(() => {
+              flatListRef.current?.scrollToIndex({ index: safeIndex, animated: false });
+            }, 50);
+          }
+        }}
         onViewableItemsChanged={onViewableItemsChanged}
         viewabilityConfig={viewabilityConfig}
         windowSize={3}
         maxToRenderPerBatch={3}
         renderItem={({ item, index }) => (
-          <View style={{ height: WINDOW_HEIGHT, width: WINDOW_WIDTH }}>
+          <View style={{ height: listHeight, width: WINDOW_WIDTH }}>
             <SingleVideo
               url={item.videoUrl}
               isActive={index === currentIndex}
@@ -282,6 +367,7 @@ export default function PlayerScreen() {
               onNeedAd={() => setShowAdWall(true)}
               onActivePlayerReady={onActivePlayerReady}
               previewText={t("player.previewPlaying")}
+              onPlayToEnd={index === currentIndex ? handlePlayToEnd : undefined}
             />
           </View>
         )}
@@ -309,12 +395,14 @@ export default function PlayerScreen() {
             <FontAwesome5 name="heart" solid size={24} color={likes[currentEp.episodeNumber] ? colors.dark.primary : colors.dark.foreground} />
           </View>
           <Text style={styles.actionText}>{t("player.like")}</Text>
+          <Text style={styles.actionCount}>{getVirtualCount(dramaId, 1)}</Text>
         </Pressable>
         <Pressable style={styles.actionItem} onPress={() => { Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light); toggleFavorite(dramaId); }}>
           <View style={[styles.actionIconWrap, isFavorite(dramaId) && styles.actionIconWrapActive]}>
             <FontAwesome5 name="bookmark" solid size={24} color={isFavorite(dramaId) ? colors.dark.accent : colors.dark.foreground} />
           </View>
           <Text style={styles.actionText}>{t("player.save")}</Text>
+          <Text style={styles.actionCount}>{getVirtualCount(dramaId, 0.4)}</Text>
         </Pressable>
         <Pressable style={styles.actionItem} onPress={() => setShowDrawer(true)}>
           <View style={styles.actionIconWrap}>
@@ -349,7 +437,28 @@ export default function PlayerScreen() {
           )}
         </View>
         <Text style={styles.titleText} pointerEvents="none">{drama.title}</Text>
-        <Text style={styles.epText} pointerEvents="none">{t("player.episode", { n: currentEp.episodeNumber, total: drama.episodes.length })}</Text>
+        <View style={styles.epRow}>
+          <Text style={styles.epText} pointerEvents="none">{t("player.episode", { n: currentEp.episodeNumber, total: drama.episodes.length })}</Text>
+          <Pressable style={styles.speedButton} onPress={() => setShowSpeedPicker(p => !p)}>
+            <Text style={styles.speedButtonText}>{playbackSpeed === 1 ? t("player.speed") : `${playbackSpeed}x`}</Text>
+          </Pressable>
+        </View>
+
+        {showSpeedPicker && (
+          <View style={styles.speedPicker}>
+            {SPEED_OPTIONS.map(s => (
+              <Pressable
+                key={s}
+                style={[styles.speedOption, playbackSpeed === s && styles.speedOptionActive]}
+                onPress={() => handleSpeedSelect(s)}
+              >
+                <Text style={[styles.speedOptionText, playbackSpeed === s && styles.speedOptionTextActive]}>
+                  {s === 1 ? '1x' : `${s}x`}
+                </Text>
+              </Pressable>
+            ))}
+          </View>
+        )}
 
         <ProgressBar progress={progressFraction} onSeek={handleSeek} disabled={!isUnlocked} />
       </SafeAreaView>
@@ -497,6 +606,60 @@ const styles = StyleSheet.create({
     textShadowColor: 'rgba(0,0,0,0.5)',
     textShadowOffset: { width: 0, height: 1 },
     textShadowRadius: 2,
+  },
+  actionCount: {
+    color: colors.dark.secondaryForeground,
+    fontSize: 11,
+    textShadowColor: 'rgba(0,0,0,0.5)',
+    textShadowOffset: { width: 0, height: 1 },
+    textShadowRadius: 2,
+  },
+  epRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginBottom: 4,
+  },
+  speedButton: {
+    paddingHorizontal: 10,
+    paddingVertical: 4,
+    backgroundColor: 'rgba(255,255,255,0.15)',
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.25)',
+  },
+  speedButtonText: {
+    color: colors.dark.foreground,
+    fontSize: 12,
+    fontWeight: '700',
+  },
+  speedPicker: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    backgroundColor: 'rgba(0,0,0,0.7)',
+    borderRadius: 16,
+    paddingHorizontal: 8,
+    paddingVertical: 6,
+    marginBottom: 6,
+    gap: 4,
+  },
+  speedOption: {
+    flex: 1,
+    alignItems: 'center',
+    paddingVertical: 6,
+    borderRadius: 12,
+  },
+  speedOptionActive: {
+    backgroundColor: colors.dark.primary,
+  },
+  speedOptionText: {
+    color: colors.dark.secondaryForeground,
+    fontSize: 12,
+    fontWeight: '600',
+  },
+  speedOptionTextActive: {
+    color: colors.dark.foreground,
+    fontWeight: '700',
   },
   bottomInfo: {
     position: 'absolute',

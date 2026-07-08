@@ -13,4 +13,5 @@ export const UserRegisterInputAuthProvider = {
   apple: 'apple',
   google: 'google',
   guest: 'guest',
+  email: 'email',
 } as const;

@@ -29,6 +29,25 @@ const en = {
   "login.apple": "Sign in with Apple",
   "login.google": "Sign in with Google",
   "login.guest": "Continue as Guest",
+  "login.email": "Sign in with Email",
+  "login.or": "or",
+  "login.emailPlaceholder": "Email address",
+  "login.passwordPlaceholder": "Password",
+  "login.signIn": "Sign In",
+  "login.noAccount": "Don't have an account? Register",
+  "login.back": "Back",
+
+  "register.title": "Create Account",
+  "register.subtitle": "Join DramaVerse to save your progress.",
+  "register.namePlaceholder": "Display name (optional)",
+  "register.emailPlaceholder": "Email address",
+  "register.passwordPlaceholder": "Password (min 6 characters)",
+  "register.confirmPasswordPlaceholder": "Confirm password",
+  "register.createAccount": "Create Account",
+  "register.hasAccount": "Already have an account? Sign in",
+  "register.fillAllFields": "Please fill in all required fields.",
+  "register.passwordTooShort": "Password must be at least 6 characters.",
+  "register.passwordsMismatch": "Passwords do not match.",
 
   "home.logo": "DramaVerse",
   "home.continueWatching": "Continue Watching",
@@ -72,6 +91,7 @@ const en = {
   "player.notFound": "Drama not found",
   "player.noEpisodes": "No episodes available yet",
   "player.previewPlaying": "Preview playing...",
+  "player.speed": "Speed",
 };
 
 const es: typeof en = {
@@ -88,6 +108,25 @@ const es: typeof en = {
   "login.apple": "Iniciar sesión con Apple",
   "login.google": "Iniciar sesión con Google",
   "login.guest": "Continuar como invitado",
+  "login.email": "Iniciar sesión con Email",
+  "login.or": "o",
+  "login.emailPlaceholder": "Correo electrónico",
+  "login.passwordPlaceholder": "Contraseña",
+  "login.signIn": "Iniciar sesión",
+  "login.noAccount": "¿No tienes cuenta? Regístrate",
+  "login.back": "Atrás",
+
+  "register.title": "Crear cuenta",
+  "register.subtitle": "Únete a DramaVerse para guardar tu progreso.",
+  "register.namePlaceholder": "Nombre (opcional)",
+  "register.emailPlaceholder": "Correo electrónico",
+  "register.passwordPlaceholder": "Contraseña (mín. 6 caracteres)",
+  "register.confirmPasswordPlaceholder": "Confirmar contraseña",
+  "register.createAccount": "Crear cuenta",
+  "register.hasAccount": "¿Ya tienes cuenta? Iniciar sesión",
+  "register.fillAllFields": "Por favor completa todos los campos obligatorios.",
+  "register.passwordTooShort": "La contraseña debe tener al menos 6 caracteres.",
+  "register.passwordsMismatch": "Las contraseñas no coinciden.",
 
   "home.logo": "DramaVerse",
   "home.continueWatching": "Continuar viendo",
@@ -131,6 +170,7 @@ const es: typeof en = {
   "player.notFound": "Drama no encontrado",
   "player.noEpisodes": "Sin episodios disponibles",
   "player.previewPlaying": "Reproduciendo vista previa...",
+  "player.speed": "Velocidad",
 };
 
 const pt: typeof en = {
@@ -147,6 +187,44 @@ const pt: typeof en = {
   "login.apple": "Entrar com Apple",
   "login.google": "Entrar com Google",
   "login.guest": "Continuar como visitante",
+  "login.email": "تسجيل الدخول بالبريد الإلكتروني",
+  "login.or": "أو",
+  "login.emailPlaceholder": "البريد الإلكتروني",
+  "login.passwordPlaceholder": "كلمة المرور",
+  "login.signIn": "تسجيل الدخول",
+  "login.noAccount": "ليس لديك حساب؟ التسجيل",
+  "login.back": "الرجوع",
+
+  "register.title": "إنشاء حساب",
+  "register.subtitle": "انضم إلى DramaVerse لحفظ تقدمك.",
+  "register.namePlaceholder": "الاسم (اختياري)",
+  "register.emailPlaceholder": "البريد الإلكتروني",
+  "register.passwordPlaceholder": "كلمة المرور (6 أحرف على الأقل)",
+  "register.confirmPasswordPlaceholder": "تأكيد كلمة المرور",
+  "register.createAccount": "إنشاء حساب",
+  "register.hasAccount": "لديك حساب بالفعل؟ تسجيل الدخول",
+  "register.fillAllFields": "يرجى ملء جميع الحقول المطلوبة.",
+  "register.passwordTooShort": "يجب أن تكون كلمة المرور 6 أحرف على الأقل.",
+  "register.passwordsMismatch": "كلمات المرور غير متطابقة.",
+  "login.email": "Entrar com Email",
+  "login.or": "ou",
+  "login.emailPlaceholder": "Endereço de e-mail",
+  "login.passwordPlaceholder": "Senha",
+  "login.signIn": "Entrar",
+  "login.noAccount": "Não tem conta? Cadastre-se",
+  "login.back": "Voltar",
+
+  "register.title": "Criar conta",
+  "register.subtitle": "Junte-se ao DramaVerse para salvar seu progresso.",
+  "register.namePlaceholder": "Nome (opcional)",
+  "register.emailPlaceholder": "Endereço de e-mail",
+  "register.passwordPlaceholder": "Senha (mín. 6 caracteres)",
+  "register.confirmPasswordPlaceholder": "Confirmar senha",
+  "register.createAccount": "Criar conta",
+  "register.hasAccount": "Já tem conta? Entrar",
+  "register.fillAllFields": "Preencha todos os campos obrigatórios.",
+  "register.passwordTooShort": "A senha deve ter pelo menos 6 caracteres.",
+  "register.passwordsMismatch": "As senhas não coincidem.",
 
   "home.logo": "DramaVerse",
   "home.continueWatching": "Continuar assistindo",
@@ -190,6 +268,7 @@ const pt: typeof en = {
   "player.notFound": "Dorama não encontrado",
   "player.noEpisodes": "Sem episódios disponíveis",
   "player.previewPlaying": "Reproduzindo prévia...",
+  "player.speed": "Velocidade",
 };
 
 const ar: typeof en = {
@@ -249,6 +328,7 @@ const ar: typeof en = {
   "player.notFound": "الدراما غير موجودة",
   "player.noEpisodes": "لا توجد حلقات متاحة حتى الآن",
   "player.previewPlaying": "تشغيل المعاينة...",
+  "player.speed": "السرعة",
 };
 
 const th: typeof en = {
@@ -265,6 +345,25 @@ const th: typeof en = {
   "login.apple": "เข้าสู่ระบบด้วย Apple",
   "login.google": "เข้าสู่ระบบด้วย Google",
   "login.guest": "ดำเนินการต่อในฐานะผู้เยี่ยมชม",
+  "login.email": "เข้าสู่ระบบด้วย Email",
+  "login.or": "หรือ",
+  "login.emailPlaceholder": "ที่อยู่อีเมล",
+  "login.passwordPlaceholder": "รหัสผ่าน",
+  "login.signIn": "เข้า​สู่ระบบ",
+  "login.noAccount": "ยังไม่มีบัญชี? สมัคร",
+  "login.back": "กลับ",
+
+  "register.title": "สร้างบัญชี",
+  "register.subtitle": "ร่วม DramaVerse เพื่อบันทึกควา​มคืนของคุณ.",
+  "register.namePlaceholder": "ชื่อแสดง (จะละเว้น)",
+  "register.emailPlaceholder": "ที่อยู่อีเมล",
+  "register.passwordPlaceholder": "รหัสผ่าน (ระยะอย่างน้อย 6 ตัวอักษร)",
+  "register.confirmPasswordPlaceholder": "ยืนยันรหัสผ่าน",
+  "register.createAccount": "สร้างบัญชี",
+  "register.hasAccount": "มีบัญชีอยู่แล้ว? เข้า​สู่ระบบ",
+  "register.fillAllFields": "กรุณะกรอกข้อมูลที่จำเป็นทุกช่อง.",
+  "register.passwordTooShort": "รหัสผ่านต้องมีอย่างน้อย 6 ตัวอักษร",
+  "register.passwordsMismatch": "รหัสผ่านไม่ตรงกัน",
 
   "home.logo": "DramaVerse",
   "home.continueWatching": "ดูต่อ",
@@ -308,6 +407,7 @@ const th: typeof en = {
   "player.notFound": "ไม่พบละคร",
   "player.noEpisodes": "ยังไม่มีตอนที่พร้อมให้ดู",
   "player.previewPlaying": "กำลังเล่นตัวอย่าง...",
+  "player.speed": "ความเร็ว",
 };
 
 const vi: typeof en = {
@@ -324,6 +424,25 @@ const vi: typeof en = {
   "login.apple": "Đăng nhập bằng Apple",
   "login.google": "Đăng nhập bằng Google",
   "login.guest": "Tiếp tục với tư cách khách",
+  "login.email": "Đăng nhập bằng Email",
+  "login.or": "hoặc",
+  "login.emailPlaceholder": "Địa chỉ email",
+  "login.passwordPlaceholder": "Mật khẩu",
+  "login.signIn": "Đăng nhập",
+  "login.noAccount": "Chưa có tài khoản? Đăng ký",
+  "login.back": "Quay lại",
+
+  "register.title": "Tạo tài khoản",
+  "register.subtitle": "Tham gia DramaVerse để lưu tiến trình.",
+  "register.namePlaceholder": "Tên hiển thị (tùy chọn)",
+  "register.emailPlaceholder": "Địa chỉ email",
+  "register.passwordPlaceholder": "Mật khẩu (tối thiểu 6 ký tự)",
+  "register.confirmPasswordPlaceholder": "Xác nhận mật khẩu",
+  "register.createAccount": "Tạo tài khoản",
+  "register.hasAccount": "Đã có tài khoản? Đăng nhập",
+  "register.fillAllFields": "Vui lòng điền đầy đủ các trường bắt buộc.",
+  "register.passwordTooShort": "Mật khẩu phải có ít nhất 6 ký tự.",
+  "register.passwordsMismatch": "Mật khẩu không trùng khớp.",
 
   "home.logo": "DramaVerse",
   "home.continueWatching": "Tiếp tục xem",
@@ -367,6 +486,7 @@ const vi: typeof en = {
   "player.notFound": "Không tìm thấy phim",
   "player.noEpisodes": "Chưa có tập nào",
   "player.previewPlaying": "Đang phát xem trước...",
+  "player.speed": "Tốc độ",
 };
 
 const id_: typeof en = {
@@ -383,6 +503,25 @@ const id_: typeof en = {
   "login.apple": "Masuk dengan Apple",
   "login.google": "Masuk dengan Google",
   "login.guest": "Lanjutkan sebagai Tamu",
+  "login.email": "Masuk dengan Email",
+  "login.or": "atau",
+  "login.emailPlaceholder": "Alamat email",
+  "login.passwordPlaceholder": "Kata sandi",
+  "login.signIn": "Masuk",
+  "login.noAccount": "Belum punya akun? Daftar",
+  "login.back": "Kembali",
+
+  "register.title": "Buat Akun",
+  "register.subtitle": "Bergabunglah dengan DramaVerse untuk menyimpan progres Anda.",
+  "register.namePlaceholder": "Nama tampilan (opsional)",
+  "register.emailPlaceholder": "Alamat email",
+  "register.passwordPlaceholder": "Kata sandi (min 6 karakter)",
+  "register.confirmPasswordPlaceholder": "Konfirmasi kata sandi",
+  "register.createAccount": "Buat Akun",
+  "register.hasAccount": "Sudah punya akun? Masuk",
+  "register.fillAllFields": "Harap isi semua kolom yang diperlukan.",
+  "register.passwordTooShort": "Kata sandi harus minimal 6 karakter.",
+  "register.passwordsMismatch": "Kata sandi tidak cocok.",
 
   "home.logo": "DramaVerse",
   "home.continueWatching": "Lanjutkan Menonton",
@@ -426,6 +565,7 @@ const id_: typeof en = {
   "player.notFound": "Drama tidak ditemukan",
   "player.noEpisodes": "Belum ada episode tersedia",
   "player.previewPlaying": "Memutar pratinjau...",
+  "player.speed": "Kecepatan",
 };
 
 const ja: typeof en = {
@@ -442,6 +582,25 @@ const ja: typeof en = {
   "login.apple": "Appleでサインイン",
   "login.google": "Googleでサインイン",
   "login.guest": "ゲストとして続ける",
+  "login.email": "Eメールでサインイン",
+  "login.or": "または",
+  "login.emailPlaceholder": "Eメールアドレス",
+  "login.passwordPlaceholder": "パスワード",
+  "login.signIn": "サインイン",
+  "login.noAccount": "アカウントがないですか。登録",
+  "login.back": "戻る",
+
+  "register.title": "アカウント作成",
+  "register.subtitle": "DramaVerseに参加し、プログレスを保存しましょう。",
+  "register.namePlaceholder": "表示名（任意）",
+  "register.emailPlaceholder": "Eメールアドレス",
+  "register.passwordPlaceholder": "パスワード（6文字以上）",
+  "register.confirmPasswordPlaceholder": "パスワード確認",
+  "register.createAccount": "アカウント作成",
+  "register.hasAccount": "アカウントをお持ちですか。サインイン",
+  "register.fillAllFields": "必要な空欄をすべて入力してください。",
+  "register.passwordTooShort": "パスワードは6文字以上です。",
+  "register.passwordsMismatch": "パスワードが一致しません。",
 
   "home.logo": "DramaVerse",
   "home.continueWatching": "続きから見る",
@@ -480,11 +639,31 @@ const ja: typeof en = {
   "player.episodes": "エピソード",
   "player.share": "シェア",
   "player.unlocked": "解放済み",
+  "login.email": "Email로 로그인",
+  "login.or": "또는",
+  "login.emailPlaceholder": "Email 주소",
+  "login.passwordPlaceholder": "비밀번호",
+  "login.signIn": "로그인",
+  "login.noAccount": "계정이 없나요? 회원가입",
+  "login.back": "뒨기",
+
+  "register.title": "계정 생성",
+  "register.subtitle": "DramaVerse에 참가하여 진행 상태를 저장하세요.",
+  "register.namePlaceholder": "표시 이름 (선택사항)",
+  "register.emailPlaceholder": "Email 주소",
+  "register.passwordPlaceholder": "비밀번호 (최소 6글자)",
+  "register.confirmPasswordPlaceholder": "비밀번호 확인",
+  "register.createAccount": "계정 생성",
+  "register.hasAccount": "계정이 있나요? 로그인",
+  "register.fillAllFields": "필수 항목을 모두 입력해주세요.",
+  "register.passwordTooShort": "비밀번호는 최소 6글자 이상이어야 합니다.",
+  "register.passwordsMismatch": "비밀번호가 일치하지 않습니다.",
   "player.preview": "プレビュー",
   "player.episode": "第{n}話 / 全{total}話",
   "player.notFound": "ドラマが見つかりません",
   "player.noEpisodes": "エピソードはまだありません",
   "player.previewPlaying": "プレビュー再生中...",
+  "player.speed": "倍速",
 };
 
 const ko: typeof en = {
@@ -515,6 +694,25 @@ const ko: typeof en = {
   "search.noResults": '"{q}"에 대한 결과가 없습니다',
 
   "profile.title": "프로필",
+  "login.email": "使用 Email 登入",
+  "login.or": "或",
+  "login.emailPlaceholder": "電子郵件地址",
+  "login.passwordPlaceholder": "密碼",
+  "login.signIn": "登入",
+  "login.noAccount": "還沒有帳戶？註冊",
+  "login.back": "返回",
+
+  "register.title": "創建帳戶",
+  "register.subtitle": "加入 DramaVerse 以保存觀看進度。",
+  "register.namePlaceholder": "顯示名稱 (可選)",
+  "register.emailPlaceholder": "電子郵件地址",
+  "register.passwordPlaceholder": "密碼 (最少 6 位字元)",
+  "register.confirmPasswordPlaceholder": "確認密碼",
+  "register.createAccount": "創建帳戶",
+  "register.hasAccount": "已經有帳戶？登入",
+  "register.fillAllFields": "請填寫必填欄位。",
+  "register.passwordTooShort": "密碼必須至少 6 位字元。",
+  "register.passwordsMismatch": "密碼不一致。",
   "profile.account": "계정",
   "profile.signedInAs": "{provider}로 로그인됨",
   "profile.guest": "게스트",
@@ -544,6 +742,7 @@ const ko: typeof en = {
   "player.notFound": "드라마를 찾을 수 없습니다",
   "player.noEpisodes": "아직 에피소드가 없습니다",
   "player.previewPlaying": "미리보기 재생 중...",
+  "player.speed": "배속",
 };
 
 const zhHant: typeof en = {
@@ -603,6 +802,7 @@ const zhHant: typeof en = {
   "player.notFound": "找不到短劇",
   "player.noEpisodes": "目前還沒有集數",
   "player.previewPlaying": "正在播放預覽...",
+  "player.speed": "倍速",
 };
 
 export const translations: Record<string, typeof en> = {

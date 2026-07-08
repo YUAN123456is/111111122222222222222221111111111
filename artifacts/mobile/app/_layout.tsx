@@ -1,4 +1,4 @@
-import { Stack } from "expo-router";
+﻿import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import React, { useEffect } from "react";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
@@ -26,6 +26,7 @@ function RootLayoutNav() {
       <Stack.Screen name="index" />
       <Stack.Screen name="onboarding" />
       <Stack.Screen name="login" />
+      <Stack.Screen name="register" />
       <Stack.Screen name="(home)" />
       <Stack.Screen name="player" />
       <Stack.Screen name="profile" />
@@ -36,7 +37,7 @@ function RootLayoutNav() {
 
 export default function RootLayout() {
   const [fontsLoaded] = useFonts({
-    // FontAwesome5 Free — family names must match what createFA5iconSet registers
+    // FontAwesome5 Free 鈥?family names must match what createFA5iconSet registers
     "FontAwesomeFree-Regular": require("@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"),
     "FontAwesomeFree-Solid": require("@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"),
     "FontAwesomeFree-Brand": require("@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"),

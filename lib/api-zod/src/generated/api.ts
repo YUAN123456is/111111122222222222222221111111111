@@ -355,22 +355,43 @@ export const UnlockEpisodesResponse = zod.object({
 
 
 /**
- * @summary Register or fetch a device-based user (Apple/Google/Guest)
+ * @summary Register or authenticate a user (Apple/Google/Guest/Email)
  */
 
 
 
 export const RegisterUserBody = zod.object({
-  "deviceId": zod.string().min(1),
-  "authProvider": zod.enum(['apple', 'google', 'guest'])
+  "deviceId": zod.string().min(1).optional(),
+  "authProvider": zod.enum(['apple', 'google', 'guest', 'email']),
+  "email": zod.string().email().optional(),
+  "password": zod.string().min(6).optional(),
+  "displayName": zod.string().optional()
 })
 
 export const RegisterUserResponse = zod.object({
   "id": zod.string(),
   "deviceId": zod.string(),
-  "authProvider": zod.enum(['apple', 'google', 'guest']),
+  "authProvider": zod.enum(['apple', 'google', 'guest', 'email']),
+  "email": zod.string().nullish(),
+  "displayName": zod.string().nullish(),
   "createdAt": zod.coerce.date()
 })
+/**
+ * @summary Login with email and password
+ */
+export const LoginUserBody = zod.object({
+    "email": zod.string().email(),
+    "password": zod.string()
+  })
+
+export const LoginUserResponse = zod.object({
+    "id": zod.string(),
+    "deviceId": zod.string(),
+    "authProvider": zod.enum(['apple', 'google', 'guest', 'email']),
+    "email": zod.string().nullish(),
+    "displayName": zod.string().nullish(),
+    "createdAt": zod.coerce.date()
+  })
 
 
 /**

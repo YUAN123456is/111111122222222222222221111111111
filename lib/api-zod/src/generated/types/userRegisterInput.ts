@@ -9,6 +9,11 @@ import type { UserRegisterInputAuthProvider } from './userRegisterInputAuthProvi
 
 export interface UserRegisterInput {
   /** @minLength 1 */
-  deviceId: string;
+  deviceId?: string;
   authProvider: UserRegisterInputAuthProvider;
+  /** @format email */
+  email?: string;
+  /** @minLength 6 */
+  password?: string;
+  displayName?: string;
 }

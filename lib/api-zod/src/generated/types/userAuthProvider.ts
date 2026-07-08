@@ -13,4 +13,5 @@ export const UserAuthProvider = {
   apple: 'apple',
   google: 'google',
   guest: 'guest',
+  email: 'email',
 } as const;

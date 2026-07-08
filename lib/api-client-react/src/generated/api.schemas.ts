@@ -210,12 +210,15 @@ export const UserAuthProvider = {
   apple: 'apple',
   google: 'google',
   guest: 'guest',
+  email: 'email',
 } as const;
 
 export interface User {
   id: string;
   deviceId: string;
   authProvider: UserAuthProvider;
+  email?: string;
+  displayName?: string;
   createdAt: string;
 }
 
@@ -226,12 +229,23 @@ export const UserRegisterInputAuthProvider = {
   apple: 'apple',
   google: 'google',
   guest: 'guest',
+  email: 'email',
 } as const;
+
+export interface LoginInput {
+  email: string;
+  password: string;
+}
 
 export interface UserRegisterInput {
   /** @minLength 1 */
-  deviceId: string;
+  deviceId?: string;
   authProvider: UserRegisterInputAuthProvider;
+  /** @format email */
+  email?: string;
+  /** @minLength 6 */
+  password?: string;
+  displayName?: string;
 }
 
 export interface DashboardSummary {

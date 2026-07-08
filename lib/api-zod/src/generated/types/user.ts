@@ -12,4 +12,6 @@ export interface User {
   deviceId: string;
   authProvider: UserAuthProvider;
   createdAt: Date;
+  email?: string;
+  displayName?: string;
 }

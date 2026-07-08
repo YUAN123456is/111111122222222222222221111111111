@@ -16,10 +16,10 @@ export const DEFAULT_LOCALE = "en";
 export type TranslationKey = keyof typeof en;
 
 const en = {
-  "onboarding.title": "Welcome to DramaVerse",
+  "onboarding.title": "Welcome to Nebula TV",
   "onboarding.subtitle": "Binge-worthy short dramas, updated daily.",
   "onboarding.continue": "Continue",
-  "onboarding.attTitle": "Allow DramaVerse to track your activity across other apps?",
+  "onboarding.attTitle": "Allow Nebula TV to track your activity across other apps?",
   "onboarding.attBody": "This helps us show you more relevant dramas and ads.",
   "onboarding.attAskNotToTrack": "Ask App Not to Track",
   "onboarding.attAllow": "Allow",
@@ -38,7 +38,7 @@ const en = {
   "login.back": "Back",
 
   "register.title": "Create Account",
-  "register.subtitle": "Join DramaVerse to save your progress.",
+  "register.subtitle": "Join Nebula TV to save your progress.",
   "register.namePlaceholder": "Display name (optional)",
   "register.emailPlaceholder": "Email address",
   "register.passwordPlaceholder": "Password (min 6 characters)",
@@ -49,7 +49,7 @@ const en = {
   "register.passwordTooShort": "Password must be at least 6 characters.",
   "register.passwordsMismatch": "Passwords do not match.",
 
-  "home.logo": "DramaVerse",
+  "home.logo": "Nebula TV",
   "home.continueWatching": "Continue Watching",
   "home.free": "Free EP 1-{n}",
   "home.ep": "EP {n}",
@@ -84,8 +84,8 @@ const en = {
   "profile.reportPlaceholder": "Please describe the issue in detail...",
   "profile.reportSubmit": "Submit",
   "profile.reportSent": "Thank you! Your report has been submitted.",
-  "profile.privacyContent": "DramaVerse Privacy Policy\n\nLast updated: July 2025\n\n1. Information We Collect\nWe collect device identifiers and usage data to provide and improve our services. If you sign in with email, we store your email address securely. We do not collect personal names, phone numbers, or physical addresses.\n\n2. How We Use Your Information\n- To provide and maintain the DramaVerse service\n- To personalize your viewing experience\n- To serve advertisements that support the free content\n- To detect and prevent fraud or abuse\n\n3. Advertising\nWe work with third-party ad networks to display ads. These partners may collect device identifiers and usage data to provide relevant advertisements. You can manage your ad preferences in your device settings.\n\n4. Data Security\nWe use industry-standard encryption to protect your data. Passwords are stored using secure hashing algorithms and are never stored in plain text.\n\n5. Data Retention\nWe retain your data for as long as your account is active. You can delete your account at any time from the Profile screen, which will permanently remove all your data.\n\n6. Children's Privacy\nDramaVerse is not intended for children under 13. We do not knowingly collect data from children.\n\n7. Changes to This Policy\nWe may update this policy from time to time. We will notify you of any changes through the app.\n\n8. Contact Us\nIf you have questions about this privacy policy, please use the Report a Problem feature in the app.",
-  "profile.termsContent": "DramaVerse Terms of Service\n\nLast updated: July 2025\n\n1. Acceptance of Terms\nBy using DramaVerse, you agree to these Terms of Service. If you do not agree, please do not use the app.\n\n2. Service Description\nDramaVerse is a free short-drama streaming platform supported by advertisements. All content is provided free of charge, with some episodes requiring ad views to unlock.\n\n3. User Accounts\nYou may use DramaVerse as a guest or create an account with your email, Apple, or Google credentials. You are responsible for maintaining the security of your account.\n\n4. Content\nAll drama content on DramaVerse is owned by their respective creators. You may not download, redistribute, or commercially use any content from the app.\n\n5. Advertisements\nDramaVerse is supported by advertising. By using the service, you agree to view advertisements as part of the content experience. Ad-free options are not currently available.\n\n6. Acceptable Use\nYou agree not to:\n- Use the app for any illegal purpose\n- Attempt to circumvent ad requirements or unlock mechanisms\n- Harass, abuse, or harm other users\n- Use automated tools to access the service\n\n7. Termination\nWe reserve the right to terminate or suspend your account at our discretion, without notice, for conduct that violates these terms.\n\n8. Disclaimer\nDramaVerse is provided \"as is\" without warranties of any kind. We are not liable for any damages arising from your use of the service.\n\n9. Limitation of Liability\nTo the maximum extent permitted by law, DramaVerse shall not be liable for any indirect, incidental, or consequential damages.\n\n10. Changes to Terms\nWe may modify these terms at any time. Continued use of the app after changes constitutes acceptance of the new terms.\n\n11. Contact\nFor questions about these terms, please use the Report a Problem feature in the app.",
+  "profile.privacyContent": "Nebula TV Privacy Policy\n\nLast updated: July 2025\n\n1. Information We Collect\nWe collect device identifiers and usage data to provide and improve our services. If you sign in with email, we store your email address securely. We do not collect personal names, phone numbers, or physical addresses.\n\n2. How We Use Your Information\n- To provide and maintain the Nebula TV service\n- To personalize your viewing experience\n- To serve advertisements that support the free content\n- To detect and prevent fraud or abuse\n\n3. Advertising\nWe work with third-party ad networks to display ads. These partners may collect device identifiers and usage data to provide relevant advertisements. You can manage your ad preferences in your device settings.\n\n4. Data Security\nWe use industry-standard encryption to protect your data. Passwords are stored using secure hashing algorithms and are never stored in plain text.\n\n5. Data Retention\nWe retain your data for as long as your account is active. You can delete your account at any time from the Profile screen, which will permanently remove all your data.\n\n6. Children's Privacy\nNebula TV is not intended for children under 13. We do not knowingly collect data from children.\n\n7. Changes to This Policy\nWe may update this policy from time to time. We will notify you of any changes through the app.\n\n8. Contact Us\nIf you have questions about this privacy policy, please use the Report a Problem feature in the app.",
+  "profile.termsContent": "Nebula TV Terms of Service\n\nLast updated: July 2025\n\n1. Acceptance of Terms\nBy using Nebula TV, you agree to these Terms of Service. If you do not agree, please do not use the app.\n\n2. Service Description\nNebula TV is a free short-drama streaming platform supported by advertisements. All content is provided free of charge, with some episodes requiring ad views to unlock.\n\n3. User Accounts\nYou may use Nebula TV as a guest or create an account with your email, Apple, or Google credentials. You are responsible for maintaining the security of your account.\n\n4. Content\nAll drama content on Nebula TV is owned by their respective creators. You may not download, redistribute, or commercially use any content from the app.\n\n5. Advertisements\nNebula TV is supported by advertising. By using the service, you agree to view advertisements as part of the content experience. Ad-free options are not currently available.\n\n6. Acceptable Use\nYou agree not to:\n- Use the app for any illegal purpose\n- Attempt to circumvent ad requirements or unlock mechanisms\n- Harass, abuse, or harm other users\n- Use automated tools to access the service\n\n7. Termination\nWe reserve the right to terminate or suspend your account at our discretion, without notice, for conduct that violates these terms.\n\n8. Disclaimer\nNebula TV is provided \"as is\" without warranties of any kind. We are not liable for any damages arising from your use of the service.\n\n9. Limitation of Liability\nTo the maximum extent permitted by law, Nebula TV shall not be liable for any indirect, incidental, or consequential damages.\n\n10. Changes to Terms\nWe may modify these terms at any time. Continued use of the app after changes constitutes acceptance of the new terms.\n\n11. Contact\nFor questions about these terms, please use the Report a Problem feature in the app.",
 
   "player.like": "Like",
   "player.save": "Save",
@@ -101,10 +101,10 @@ const en = {
 };
 
 const es: typeof en = {
-  "onboarding.title": "Bienvenido a DramaVerse",
+  "onboarding.title": "Bienvenido a Nebula TV",
   "onboarding.subtitle": "Series cortas que te atraparán, actualizadas cada día.",
   "onboarding.continue": "Continuar",
-  "onboarding.attTitle": "¿Permitir que DramaVerse rastree tu actividad en otras apps?",
+  "onboarding.attTitle": "¿Permitir que Nebula TV rastree tu actividad en otras apps?",
   "onboarding.attBody": "Esto nos ayuda a mostrarte dramas y anuncios más relevantes.",
   "onboarding.attAskNotToTrack": "Pedir a la app que no rastree",
   "onboarding.attAllow": "Permitir",
@@ -123,7 +123,7 @@ const es: typeof en = {
   "login.back": "Atrás",
 
   "register.title": "Crear cuenta",
-  "register.subtitle": "Únete a DramaVerse para guardar tu progreso.",
+  "register.subtitle": "Únete a Nebula TV para guardar tu progreso.",
   "register.namePlaceholder": "Nombre (opcional)",
   "register.emailPlaceholder": "Correo electrónico",
   "register.passwordPlaceholder": "Contraseña (mín. 6 caracteres)",
@@ -134,7 +134,7 @@ const es: typeof en = {
   "register.passwordTooShort": "La contraseña debe tener al menos 6 caracteres.",
   "register.passwordsMismatch": "Las contraseñas no coinciden.",
 
-  "home.logo": "DramaVerse",
+  "home.logo": "Nebula TV",
   "home.continueWatching": "Continuar viendo",
   "home.free": "Gratis EP 1-{n}",
   "home.ep": "EP {n}",
@@ -169,8 +169,8 @@ const es: typeof en = {
   "profile.reportPlaceholder": "Describe el problema en detalle...",
   "profile.reportSubmit": "Enviar",
   "profile.reportSent": "Gracias! Tu reporte ha sido enviado.",
-  "profile.privacyContent": "Política de Privacidad de DramaVerse\n\nÚltima actualización: julio 2025\n\n1. Información que Recopilamos\nRecopilamos identificadores de dispositivo y datos de uso para proporcionar y mejorar nuestros servicios. Si inicias sesión con correo electrónico, almacenamos tu dirección de correo de forma segura.\n\n2. Cómo Usamos tu Información\n- Para proporcionar el servicio DramaVerse\n- Para personalizar tu experiencia\n- Para mostrar anuncios que apoyan el contenido gratuito\n- Para detectar y prevenir fraude\n\n3. Publicidad\nTrabajamos con redes publicitarias para mostrar anuncios. Estos socios pueden recopilar datos para proporcionar anuncios relevantes.\n\n4. Seguridad de Datos\nUtilizamos cifrado estándar de la industria para proteger tus datos. Las contraseñas se almacenan con algoritmos seguros y nunca en texto plano.\n\n5. Retención de Datos\nRetenemos tus datos mientras tu cuenta esté activa. Puedes eliminar tu cuenta desde la pantalla de Perfil.\n\n6. Privacidad de Niños\nDramaVerse no está destinado a menores de 13 años.\n\n7. Cambios en esta Política\nPodemos actualizar esta política. Te notificaremos a través de la app.\n\n8. Contacto\nSi tienes preguntas, usa la función de Reportar un Problema en la app.",
-  "profile.termsContent": "Términos de Servicio de DramaVerse\n\nÚltima actualización: julio 2025\n\n1. Aceptación\nAl usar DramaVerse, aceptas estos Términos de Servicio.\n\n2. Descripción del Servicio\nDramaVerse es una plataforma gratuita de streaming de cortometrajes apoyada por publicidad. Todo el contenido es gratuito, con algunos episodios que requieren ver anuncios para desbloquearlos.\n\n3. Cuentas de Usuario\nPuedes usar DramaVerse como invitado o crear una cuenta con correo electrónico, Apple o Google.\n\n4. Contenido\nTodo el contenido pertenece a sus creadores. No puedes descargar ni redistribuir contenido de la app.\n\n5. Publicidad\nAl usar el servicio, aceptas ver anuncios como parte de la experiencia de contenido.\n\n6. Uso Aceptable\nNo debes:\n- Usar la app para fines ilegales\n- Intentar evadir los requisitos de anuncios\n- Usar herramientas automatizadas para acceder al servicio\n\n7. Terminación\nNos reservamos el derecho de terminar tu cuenta si violas estos términos.\n\n8. Responsabilidad\nDramaVerse se proporciona \"tal cual\" sin garantías.\n\n9. Cambios\nPodemos modificar estos términos en cualquier momento.\n\n10. Contacto\nPara preguntas, usa la función de Reportar un Problema en la app.",
+  "profile.privacyContent": "Política de Privacidad de Nebula TV\n\nÚltima actualización: julio 2025\n\n1. Información que Recopilamos\nRecopilamos identificadores de dispositivo y datos de uso para proporcionar y mejorar nuestros servicios. Si inicias sesión con correo electrónico, almacenamos tu dirección de correo de forma segura.\n\n2. Cómo Usamos tu Información\n- Para proporcionar el servicio Nebula TV\n- Para personalizar tu experiencia\n- Para mostrar anuncios que apoyan el contenido gratuito\n- Para detectar y prevenir fraude\n\n3. Publicidad\nTrabajamos con redes publicitarias para mostrar anuncios. Estos socios pueden recopilar datos para proporcionar anuncios relevantes.\n\n4. Seguridad de Datos\nUtilizamos cifrado estándar de la industria para proteger tus datos. Las contraseñas se almacenan con algoritmos seguros y nunca en texto plano.\n\n5. Retención de Datos\nRetenemos tus datos mientras tu cuenta esté activa. Puedes eliminar tu cuenta desde la pantalla de Perfil.\n\n6. Privacidad de Niños\nNebula TV no está destinado a menores de 13 años.\n\n7. Cambios en esta Política\nPodemos actualizar esta política. Te notificaremos a través de la app.\n\n8. Contacto\nSi tienes preguntas, usa la función de Reportar un Problema en la app.",
+  "profile.termsContent": "Términos de Servicio de Nebula TV\n\nÚltima actualización: julio 2025\n\n1. Aceptación\nAl usar Nebula TV, aceptas estos Términos de Servicio.\n\n2. Descripción del Servicio\nNebula TV es una plataforma gratuita de streaming de cortometrajes apoyada por publicidad. Todo el contenido es gratuito, con algunos episodios que requieren ver anuncios para desbloquearlos.\n\n3. Cuentas de Usuario\nPuedes usar Nebula TV como invitado o crear una cuenta con correo electrónico, Apple o Google.\n\n4. Contenido\nTodo el contenido pertenece a sus creadores. No puedes descargar ni redistribuir contenido de la app.\n\n5. Publicidad\nAl usar el servicio, aceptas ver anuncios como parte de la experiencia de contenido.\n\n6. Uso Aceptable\nNo debes:\n- Usar la app para fines ilegales\n- Intentar evadir los requisitos de anuncios\n- Usar herramientas automatizadas para acceder al servicio\n\n7. Terminación\nNos reservamos el derecho de terminar tu cuenta si violas estos términos.\n\n8. Responsabilidad\nNebula TV se proporciona \"tal cual\" sin garantías.\n\n9. Cambios\nPodemos modificar estos términos en cualquier momento.\n\n10. Contacto\nPara preguntas, usa la función de Reportar un Problema en la app.",
 
   "player.like": "Me gusta",
   "player.save": "Guardar",
@@ -186,10 +186,10 @@ const es: typeof en = {
 };
 
 const pt: typeof en = {
-  "onboarding.title": "Bem-vindo ao DramaVerse",
+  "onboarding.title": "Bem-vindo ao Nebula TV",
   "onboarding.subtitle": "Doramas curtos e viciantes, atualizados todos os dias.",
   "onboarding.continue": "Continuar",
-  "onboarding.attTitle": "Permitir que o DramaVerse rastreie sua atividade em outros apps?",
+  "onboarding.attTitle": "Permitir que o Nebula TV rastreie sua atividade em outros apps?",
   "onboarding.attBody": "Isso nos ajuda a mostrar doramas e anúncios mais relevantes.",
   "onboarding.attAskNotToTrack": "Pedir ao app para não rastrear",
   "onboarding.attAllow": "Permitir",
@@ -208,7 +208,7 @@ const pt: typeof en = {
   "login.back": "الرجوع",
 
   "register.title": "إنشاء حساب",
-  "register.subtitle": "انضم إلى DramaVerse لحفظ تقدمك.",
+  "register.subtitle": "انضم إلى Nebula TV لحفظ تقدمك.",
   "register.namePlaceholder": "الاسم (اختياري)",
   "register.emailPlaceholder": "البريد الإلكتروني",
   "register.passwordPlaceholder": "كلمة المرور (6 أحرف على الأقل)",
@@ -227,7 +227,7 @@ const pt: typeof en = {
   "login.back": "Voltar",
 
   "register.title": "Criar conta",
-  "register.subtitle": "Junte-se ao DramaVerse para salvar seu progresso.",
+  "register.subtitle": "Junte-se ao Nebula TV para salvar seu progresso.",
   "register.namePlaceholder": "Nome (opcional)",
   "register.emailPlaceholder": "Endereço de e-mail",
   "register.passwordPlaceholder": "Senha (mín. 6 caracteres)",
@@ -238,7 +238,7 @@ const pt: typeof en = {
   "register.passwordTooShort": "A senha deve ter pelo menos 6 caracteres.",
   "register.passwordsMismatch": "As senhas não coincidem.",
 
-  "home.logo": "DramaVerse",
+  "home.logo": "Nebula TV",
   "home.continueWatching": "Continuar assistindo",
   "home.free": "Grátis EP 1-{n}",
   "home.ep": "EP {n}",
@@ -273,8 +273,8 @@ const pt: typeof en = {
   "profile.reportPlaceholder": "Descreva o problema em detalhes...",
   "profile.reportSubmit": "Enviar",
   "profile.reportSent": "Obrigado! Seu relatório foi enviado.",
-  "profile.privacyContent": "Política de Privacidade do DramaVerse\n\nÚltima atualização: julho 2025\n\n1. Informações Coletadas\nColetamos identificadores de dispositivo e dados de uso para fornecer e melhorar nossos serviços.\n\n2. Como Usamos suas Informações\n- Para fornecer o serviço DramaVerse\n- Para personalizar sua experiência\n- Para exibir anúncios que apoiam o conteúdo gratuito\n- Para detectar e prevenir fraudes\n\n3. Publicidade\nTrabalhamos com redes de anúncios para exibir anúncios.\n\n4. Segurança de Dados\nUsamos criptografia padrão da indústria para proteger seus dados.\n\n5. Retenção de Dados\nRetemos seus dados enquanto sua conta estiver ativa.\n\n6. Privança de Crianças\nDramaVerse não é destinado a menores de 13 anos.\n\n7. Contato\nPara dúvidas, use a funcionalidade Reportar Problema no app.",
-  "profile.termsContent": "Termos de Serviço do DramaVerse\n\nÚltima atualização: julho 2025\n\n1. Aceitação\nAo usar o DramaVerse, você aceita estes Termos.\n\n2. Descrição\nDramaVerse é uma plataforma gratuita de streaming apoiada por publicidade.\n\n3. Contas\nPode usar como convidado ou criar conta com email, Apple ou Google.\n\n4. Conteúdo\nTodo o conteúdo pertence aos seus criadores.\n\n5. Publicidade\nAo usar o serviço, aceita ver anúncios.\n\n6. Uso Aceitável\nNão use o app para fins ilegais nem tente contornar os requisitos de anúncios.\n\n7. Contato\nPara dúvidas, use Reportar Problema no app.",
+  "profile.privacyContent": "Política de Privacidade do Nebula TV\n\nÚltima atualização: julho 2025\n\n1. Informações Coletadas\nColetamos identificadores de dispositivo e dados de uso para fornecer e melhorar nossos serviços.\n\n2. Como Usamos suas Informações\n- Para fornecer o serviço Nebula TV\n- Para personalizar sua experiência\n- Para exibir anúncios que apoiam o conteúdo gratuito\n- Para detectar e prevenir fraudes\n\n3. Publicidade\nTrabalhamos com redes de anúncios para exibir anúncios.\n\n4. Segurança de Dados\nUsamos criptografia padrão da indústria para proteger seus dados.\n\n5. Retenção de Dados\nRetemos seus dados enquanto sua conta estiver ativa.\n\n6. Privança de Crianças\nNebula TV não é destinado a menores de 13 anos.\n\n7. Contato\nPara dúvidas, use a funcionalidade Reportar Problema no app.",
+  "profile.termsContent": "Termos de Serviço do Nebula TV\n\nÚltima atualização: julho 2025\n\n1. Aceitação\nAo usar o Nebula TV, você aceita estes Termos.\n\n2. Descrição\nNebula TV é uma plataforma gratuita de streaming apoiada por publicidade.\n\n3. Contas\nPode usar como convidado ou criar conta com email, Apple ou Google.\n\n4. Conteúdo\nTodo o conteúdo pertence aos seus criadores.\n\n5. Publicidade\nAo usar o serviço, aceita ver anúncios.\n\n6. Uso Aceitável\nNão use o app para fins ilegais nem tente contornar os requisitos de anúncios.\n\n7. Contato\nPara dúvidas, use Reportar Problema no app.",
 
   "player.like": "Curtir",
   "player.save": "Salvar",
@@ -290,10 +290,10 @@ const pt: typeof en = {
 };
 
 const ar: typeof en = {
-  "onboarding.title": "مرحبًا بك في DramaVerse",
+  "onboarding.title": "مرحبًا بك في Nebula TV",
   "onboarding.subtitle": "دراما قصيرة ومشوّقة، تُحدَّث يوميًا.",
   "onboarding.continue": "استمرار",
-  "onboarding.attTitle": "هل تسمح لـ DramaVerse بتتبع نشاطك في التطبيقات الأخرى؟",
+  "onboarding.attTitle": "هل تسمح لـ Nebula TV بتتبع نشاطك في التطبيقات الأخرى؟",
   "onboarding.attBody": "يساعدنا هذا في عرض دراما وإعلانات أكثر ملاءمة لك.",
   "onboarding.attAskNotToTrack": "اطلب من التطبيق عدم التتبع",
   "onboarding.attAllow": "سماح",
@@ -304,7 +304,7 @@ const ar: typeof en = {
   "login.google": "تسجيل الدخول باستخدام Google",
   "login.guest": "الاستمرار كزائر",
 
-  "home.logo": "DramaVerse",
+  "home.logo": "Nebula TV",
   "home.continueWatching": "متابعة المشاهدة",
   "home.free": "مجاني الحلقات 1-{n}",
   "home.ep": "الحلقة {n}",
@@ -339,8 +339,8 @@ const ar: typeof en = {
   "profile.reportPlaceholder": "اوصف المشكلة بتفاصيل...",
   "profile.reportSubmit": "ارسال",
   "profile.reportSent": "شكراً! تم إرسال تقريرك.",
-  "profile.privacyContent": "سياسة الخصوصية لـ DramaVerse\n\nآخر تحديث: يوليو 2025\n\n1. المعلومات التي نجمعها\nنجمع معرفات الجهاز وبيانات الاستخدام لتوفير خدماتنا.\n\n2. كيف نستخدم معلوماتك\n- لتوفير خدمة DramaVerse\n- لتخصيص تجربتك\n- لعرض الإعلانات\n\n3. الإعلانات\nنعمل مع شبكات إعلانية لعرض الإعلانات.\n\n4. أمان البيانات\nنستخدم التشفير المعياري لحماية بياناتك.\n\n5. الاتصال بنا\nللأسئلة، استخدم ميزة إبلاغ عن مشكلة في التطبيق.",
-  "profile.termsContent": "شروط الخدمة لـ DramaVerse\n\nآخر تحديث: يوليو 2025\n\n1. القبول\nباستخدام DramaVerse، تقبل هذه الشروط.\n\n2. الوصف\nDramaVerse منصة مجانية لعرض المسلسلات القصيرة مدعومة بالإعلانات.\n\n3. الحسابات\nيمكنك الاستخدام كضيف أو إنشاء حساب.\n\n4. المحتوى\nكل المحتوى ملك لمنشئيه.\n\n5. الإعلانات\nباستخدام الخدمة، تقبل عرض الإعلانات.\n\n6. الاتصال\nللأسئلة، استخدم ميزة إبلاغ عن مشكلة.",
+  "profile.privacyContent": "سياسة الخصوصية لـ Nebula TV\n\nآخر تحديث: يوليو 2025\n\n1. المعلومات التي نجمعها\nنجمع معرفات الجهاز وبيانات الاستخدام لتوفير خدماتنا.\n\n2. كيف نستخدم معلوماتك\n- لتوفير خدمة Nebula TV\n- لتخصيص تجربتك\n- لعرض الإعلانات\n\n3. الإعلانات\nنعمل مع شبكات إعلانية لعرض الإعلانات.\n\n4. أمان البيانات\nنستخدم التشفير المعياري لحماية بياناتك.\n\n5. الاتصال بنا\nللأسئلة، استخدم ميزة إبلاغ عن مشكلة في التطبيق.",
+  "profile.termsContent": "شروط الخدمة لـ Nebula TV\n\nآخر تحديث: يوليو 2025\n\n1. القبول\nباستخدام Nebula TV، تقبل هذه الشروط.\n\n2. الوصف\nNebula TV منصة مجانية لعرض المسلسلات القصيرة مدعومة بالإعلانات.\n\n3. الحسابات\nيمكنك الاستخدام كضيف أو إنشاء حساب.\n\n4. المحتوى\nكل المحتوى ملك لمنشئيه.\n\n5. الإعلانات\nباستخدام الخدمة، تقبل عرض الإعلانات.\n\n6. الاتصال\nللأسئلة، استخدم ميزة إبلاغ عن مشكلة.",
 
   "player.like": "إعجاب",
   "player.save": "حفظ",
@@ -356,10 +356,10 @@ const ar: typeof en = {
 };
 
 const th: typeof en = {
-  "onboarding.title": "ยินดีต้อนรับสู่ DramaVerse",
+  "onboarding.title": "ยินดีต้อนรับสู่ Nebula TV",
   "onboarding.subtitle": "ซีรีส์สั้นที่ดูเพลิน อัปเดตทุกวัน",
   "onboarding.continue": "ดำเนินการต่อ",
-  "onboarding.attTitle": "อนุญาตให้ DramaVerse ติดตามกิจกรรมของคุณในแอปอื่นหรือไม่?",
+  "onboarding.attTitle": "อนุญาตให้ Nebula TV ติดตามกิจกรรมของคุณในแอปอื่นหรือไม่?",
   "onboarding.attBody": "ช่วยให้เราแสดงละครและโฆษณาที่ตรงกับคุณมากขึ้น",
   "onboarding.attAskNotToTrack": "ขอให้แอปไม่ติดตาม",
   "onboarding.attAllow": "อนุญาต",
@@ -378,7 +378,7 @@ const th: typeof en = {
   "login.back": "กลับ",
 
   "register.title": "สร้างบัญชี",
-  "register.subtitle": "ร่วม DramaVerse เพื่อบันทึกควา​มคืนของคุณ.",
+  "register.subtitle": "ร่วม Nebula TV เพื่อบันทึกควา​มคืนของคุณ.",
   "register.namePlaceholder": "ชื่อแสดง (จะละเว้น)",
   "register.emailPlaceholder": "ที่อยู่อีเมล",
   "register.passwordPlaceholder": "รหัสผ่าน (ระยะอย่างน้อย 6 ตัวอักษร)",
@@ -389,7 +389,7 @@ const th: typeof en = {
   "register.passwordTooShort": "รหัสผ่านต้องมีอย่างน้อย 6 ตัวอักษร",
   "register.passwordsMismatch": "รหัสผ่านไม่ตรงกัน",
 
-  "home.logo": "DramaVerse",
+  "home.logo": "Nebula TV",
   "home.continueWatching": "ดูต่อ",
   "home.free": "ฟรี EP 1-{n}",
   "home.ep": "EP {n}",
@@ -424,8 +424,8 @@ const th: typeof en = {
   "profile.reportPlaceholder": "กรุณะแสดงปัญหารายละเอียด...",
   "profile.reportSubmit": "ส่ง",
   "profile.reportSent": "ขอบคุณ! รายงานของคุณถูกส่งแล้ว.",
-  "profile.privacyContent": "นโยบายความลับส่วนบุคคล DramaVerse\n\nอัปเดตล่าสุด: กรกฎาคม 2025\n\n1. ข้อมูลที่เรารวบรวม\nเรารวบรวมรายการของอุปกรณ์และข้อมูลการใช้งาน.\n\n2. วิธีที่เรานำข้อมูลของคุณไปใช้\n- เพื่อให้บริการ DramaVerse\n- เพื่อคุมศัพท์ประสบการของคุณ\n- เพื่อแสดงโฆษณานา\n\n3. โฆษณานา\nเรารวมงานกับเครือข่ายโฆษณานาเพื่อแสดงโฆษณานา.\n\n4. ความปลอดภัยของข้อมูล\nเราใช้การเข้ารหัสตามมาตรฐานของอุตสาหกรรมเพื่อปกป้องข้อมูลของคุณ.\n\n5. ติดต่อเรา\nหากคุณมีข้อของ กรุณะใช้คุณสมบัติปัญหา.",
-  "profile.termsContent": "ข้อกำหนดการใช้งาน DramaVerse\n\nอัปเดตล่าสุด: กรกฎาคม 2025\n\n1. การยอมรับ\nโดยการใช้ DramaVerse คุณตกลงเห็ดด้วยข้อกำหนดเหล่านี้.\n\n2. คำอธิบาย\nDramaVerse เป็นแพลตฟอร์มสตรีมิ่งฟรีที่มีโฆษณานาหลองรับ.\n\n3. บัญชีผู้ใช้\nคุณสามารถใช้งานได้โดยไม่ต้องสร้างบัญชี หรือสร้างด้วยอีเมลฌ Apple หรือ Google.\n\n4. เนื้อหา\nเนื้อหาทั้งหมดเป็นของผู้สร้าง.\n\n5. โฆษณานา\nโดยการใช้งาน คุณตกลงเห็ดการแสดงโฆษณานา.\n\n6. ติดต่อเรา\nหากคุณมีข้อของ กรุณะใช้คุณสมบัติปัญหา.",
+  "profile.privacyContent": "นโยบายความลับส่วนบุคคล Nebula TV\n\nอัปเดตล่าสุด: กรกฎาคม 2025\n\n1. ข้อมูลที่เรารวบรวม\nเรารวบรวมรายการของอุปกรณ์และข้อมูลการใช้งาน.\n\n2. วิธีที่เรานำข้อมูลของคุณไปใช้\n- เพื่อให้บริการ Nebula TV\n- เพื่อคุมศัพท์ประสบการของคุณ\n- เพื่อแสดงโฆษณานา\n\n3. โฆษณานา\nเรารวมงานกับเครือข่ายโฆษณานาเพื่อแสดงโฆษณานา.\n\n4. ความปลอดภัยของข้อมูล\nเราใช้การเข้ารหัสตามมาตรฐานของอุตสาหกรรมเพื่อปกป้องข้อมูลของคุณ.\n\n5. ติดต่อเรา\nหากคุณมีข้อของ กรุณะใช้คุณสมบัติปัญหา.",
+  "profile.termsContent": "ข้อกำหนดการใช้งาน Nebula TV\n\nอัปเดตล่าสุด: กรกฎาคม 2025\n\n1. การยอมรับ\nโดยการใช้ Nebula TV คุณตกลงเห็ดด้วยข้อกำหนดเหล่านี้.\n\n2. คำอธิบาย\nNebula TV เป็นแพลตฟอร์มสตรีมิ่งฟรีที่มีโฆษณานาหลองรับ.\n\n3. บัญชีผู้ใช้\nคุณสามารถใช้งานได้โดยไม่ต้องสร้างบัญชี หรือสร้างด้วยอีเมลฌ Apple หรือ Google.\n\n4. เนื้อหา\nเนื้อหาทั้งหมดเป็นของผู้สร้าง.\n\n5. โฆษณานา\nโดยการใช้งาน คุณตกลงเห็ดการแสดงโฆษณานา.\n\n6. ติดต่อเรา\nหากคุณมีข้อของ กรุณะใช้คุณสมบัติปัญหา.",
 
   "player.like": "ถูกใจ",
   "player.save": "บันทึก",
@@ -441,10 +441,10 @@ const th: typeof en = {
 };
 
 const vi: typeof en = {
-  "onboarding.title": "Chào mừng đến với DramaVerse",
+  "onboarding.title": "Chào mừng đến với Nebula TV",
   "onboarding.subtitle": "Phim ngắn gây nghiện, cập nhật mỗi ngày.",
   "onboarding.continue": "Tiếp tục",
-  "onboarding.attTitle": "Cho phép DramaVerse theo dõi hoạt động của bạn trên các ứng dụng khác?",
+  "onboarding.attTitle": "Cho phép Nebula TV theo dõi hoạt động của bạn trên các ứng dụng khác?",
   "onboarding.attBody": "Điều này giúp chúng tôi hiển thị phim và quảng cáo phù hợp hơn.",
   "onboarding.attAskNotToTrack": "Yêu cầu ứng dụng không theo dõi",
   "onboarding.attAllow": "Cho phép",
@@ -463,7 +463,7 @@ const vi: typeof en = {
   "login.back": "Quay lại",
 
   "register.title": "Tạo tài khoản",
-  "register.subtitle": "Tham gia DramaVerse để lưu tiến trình.",
+  "register.subtitle": "Tham gia Nebula TV để lưu tiến trình.",
   "register.namePlaceholder": "Tên hiển thị (tùy chọn)",
   "register.emailPlaceholder": "Địa chỉ email",
   "register.passwordPlaceholder": "Mật khẩu (tối thiểu 6 ký tự)",
@@ -474,7 +474,7 @@ const vi: typeof en = {
   "register.passwordTooShort": "Mật khẩu phải có ít nhất 6 ký tự.",
   "register.passwordsMismatch": "Mật khẩu không trùng khớp.",
 
-  "home.logo": "DramaVerse",
+  "home.logo": "Nebula TV",
   "home.continueWatching": "Tiếp tục xem",
   "home.free": "Miễn phí EP 1-{n}",
   "home.ep": "EP {n}",
@@ -509,8 +509,8 @@ const vi: typeof en = {
   "profile.reportPlaceholder": "Vui lòng mô tả chi tiết vấn đề...",
   "profile.reportSubmit": "Gửi",
   "profile.reportSent": "Cảm ơn! Báo cáo của bạn đã được gửi.",
-  "profile.privacyContent": "Chính sách Quyền riêng tư DramaVerse\n\nCập nhật lần cuối: Tháng 7/2025\n\n1. Thông tin chúng tôi thu thập\nChúng tôi thu thập mã thiết bị và dữ liệu sử dụng.\n\n2. Cách chúng tôi sử dụng thông tin\n- Để cung cấp dịch vụ DramaVerse\n- Để cá nhân hóa trải nghiệm\n- Để hiển thị quảng cáo\n\n3. Quảng cáo\nChúng tôi làm việc với mạng quảng cáo.\n\n4. Bảo mật dữ liệu\nChúng tôi sử dụng mã hóa tiêu chuẩn.\n\n5. Liên hệ\nĐể hỏi đáp, dùng tính năng Báo cáo vấn đề.",
-  "profile.termsContent": "Điều khoản Dịch vụ DramaVerse\n\nCập nhật lần cuối: Tháng 7/2025\n\n1. Chấp nhận\nBằng cách sử dụng DramaVerse, bạn đồng ý với điều khoản này.\n\n2. Mô tả\nDramaVerse là nền tảng phim ngắn miễn phí được hỗ trợ bởi quảng cáo.\n\n3. Tài khoản\nBạn có thể sử dụng với tư cách khách hoặc tạo tài khoản.\n\n4. Nội dung\nTất cả nội dung thuộc về người tạo.\n\n5. Quảng cáo\nBằng cách sử dụng dịch vụ, bạn đồng ý xem quảng cáo.\n\n6. Liên hệ\nĐể hỏi đáp, dùng Báo cáo vấn đề.",
+  "profile.privacyContent": "Chính sách Quyền riêng tư Nebula TV\n\nCập nhật lần cuối: Tháng 7/2025\n\n1. Thông tin chúng tôi thu thập\nChúng tôi thu thập mã thiết bị và dữ liệu sử dụng.\n\n2. Cách chúng tôi sử dụng thông tin\n- Để cung cấp dịch vụ Nebula TV\n- Để cá nhân hóa trải nghiệm\n- Để hiển thị quảng cáo\n\n3. Quảng cáo\nChúng tôi làm việc với mạng quảng cáo.\n\n4. Bảo mật dữ liệu\nChúng tôi sử dụng mã hóa tiêu chuẩn.\n\n5. Liên hệ\nĐể hỏi đáp, dùng tính năng Báo cáo vấn đề.",
+  "profile.termsContent": "Điều khoản Dịch vụ Nebula TV\n\nCập nhật lần cuối: Tháng 7/2025\n\n1. Chấp nhận\nBằng cách sử dụng Nebula TV, bạn đồng ý với điều khoản này.\n\n2. Mô tả\nNebula TV là nền tảng phim ngắn miễn phí được hỗ trợ bởi quảng cáo.\n\n3. Tài khoản\nBạn có thể sử dụng với tư cách khách hoặc tạo tài khoản.\n\n4. Nội dung\nTất cả nội dung thuộc về người tạo.\n\n5. Quảng cáo\nBằng cách sử dụng dịch vụ, bạn đồng ý xem quảng cáo.\n\n6. Liên hệ\nĐể hỏi đáp, dùng Báo cáo vấn đề.",
 
   "player.like": "Thích",
   "player.save": "Lưu",
@@ -526,10 +526,10 @@ const vi: typeof en = {
 };
 
 const id_: typeof en = {
-  "onboarding.title": "Selamat Datang di DramaVerse",
+  "onboarding.title": "Selamat Datang di Nebula TV",
   "onboarding.subtitle": "Drama pendek yang bikin ketagihan, diperbarui setiap hari.",
   "onboarding.continue": "Lanjutkan",
-  "onboarding.attTitle": "Izinkan DramaVerse melacak aktivitas Anda di aplikasi lain?",
+  "onboarding.attTitle": "Izinkan Nebula TV melacak aktivitas Anda di aplikasi lain?",
   "onboarding.attBody": "Ini membantu kami menampilkan drama dan iklan yang lebih relevan.",
   "onboarding.attAskNotToTrack": "Minta Aplikasi Tidak Melacak",
   "onboarding.attAllow": "Izinkan",
@@ -548,7 +548,7 @@ const id_: typeof en = {
   "login.back": "Kembali",
 
   "register.title": "Buat Akun",
-  "register.subtitle": "Bergabunglah dengan DramaVerse untuk menyimpan progres Anda.",
+  "register.subtitle": "Bergabunglah dengan Nebula TV untuk menyimpan progres Anda.",
   "register.namePlaceholder": "Nama tampilan (opsional)",
   "register.emailPlaceholder": "Alamat email",
   "register.passwordPlaceholder": "Kata sandi (min 6 karakter)",
@@ -559,7 +559,7 @@ const id_: typeof en = {
   "register.passwordTooShort": "Kata sandi harus minimal 6 karakter.",
   "register.passwordsMismatch": "Kata sandi tidak cocok.",
 
-  "home.logo": "DramaVerse",
+  "home.logo": "Nebula TV",
   "home.continueWatching": "Lanjutkan Menonton",
   "home.free": "Gratis EP 1-{n}",
   "home.ep": "EP {n}",
@@ -594,8 +594,8 @@ const id_: typeof en = {
   "profile.reportPlaceholder": "Jelaskan masalah secara detail...",
   "profile.reportSubmit": "Kirim",
   "profile.reportSent": "Terima kasih! Laporan Anda telah dikirim.",
-  "profile.privacyContent": "Kebijakan Privasi DramaVerse\n\nTerakhir diperbarui: Juli 2025\n\n1. Informasi yang Kami Kumpulkan\nKami mengumpulkan pengenal perangkat dan data penggunaan untuk menyediakan dan meningkatkan layanan kami.\n\n2. Cara Kami Menggunakan Informasi Anda\n- Untuk menyediakan layanan DramaVerse\n- Untuk mempersonalisasi pengalaman Anda\n- Untuk menampilkan iklan yang mendukung konten gratis\n- Untuk mendeteksi dan mencegah penipuan\n\n3. Periklanan\nKami bekerja sama dengan jaringan iklan untuk menampilkan iklan.\n\n4. Keamanan Data\nKami menggunakan enkripsi standar industri untuk melindungi data Anda.\n\n5. Retensi Data\nKami menyimpan data Anda selama akun aktif.\n\n6. Privasi Anak\nDramaVerse tidak ditujukan untuk anak di bawah 13 tahun.\n\n7. Hubungi Kami\nJika ada pertanyaan, gunakan fitur Laporkan Masalah di aplikasi.",
-  "profile.termsContent": "Ketentuan Layanan DramaVerse\n\nTerakhir diperbarui: Juli 2025\n\n1. Penerimaan\nDengan menggunakan DramaVerse, Anda menyetujui Ketentuan ini.\n\n2. Deskripsi Layanan\nDramaVerse adalah platform streaming drama pendek gratis yang didukung iklan.\n\n3. Akun\nAnda dapat menggunakan DramaVerse sebagai tamu atau membuat akun dengan email, Apple, atau Google.\n\n4. Konten\nSemua konten dimiliki oleh pembuatnya.\n\n5. Iklan\nDengan menggunakan layanan ini, Anda setuju melihat iklan.\n\n6. Penggunaan yang Dapat Diterima\nJangan gunakan aplikasi untuk tujuan ilegal atau mencoba melewati persyaratan iklan.\n\n7. Hubungi Kami\nUntuk pertanyaan, gunakan fitur Laporkan Masalah di aplikasi.",
+  "profile.privacyContent": "Kebijakan Privasi Nebula TV\n\nTerakhir diperbarui: Juli 2025\n\n1. Informasi yang Kami Kumpulkan\nKami mengumpulkan pengenal perangkat dan data penggunaan untuk menyediakan dan meningkatkan layanan kami.\n\n2. Cara Kami Menggunakan Informasi Anda\n- Untuk menyediakan layanan Nebula TV\n- Untuk mempersonalisasi pengalaman Anda\n- Untuk menampilkan iklan yang mendukung konten gratis\n- Untuk mendeteksi dan mencegah penipuan\n\n3. Periklanan\nKami bekerja sama dengan jaringan iklan untuk menampilkan iklan.\n\n4. Keamanan Data\nKami menggunakan enkripsi standar industri untuk melindungi data Anda.\n\n5. Retensi Data\nKami menyimpan data Anda selama akun aktif.\n\n6. Privasi Anak\nNebula TV tidak ditujukan untuk anak di bawah 13 tahun.\n\n7. Hubungi Kami\nJika ada pertanyaan, gunakan fitur Laporkan Masalah di aplikasi.",
+  "profile.termsContent": "Ketentuan Layanan Nebula TV\n\nTerakhir diperbarui: Juli 2025\n\n1. Penerimaan\nDengan menggunakan Nebula TV, Anda menyetujui Ketentuan ini.\n\n2. Deskripsi Layanan\nNebula TV adalah platform streaming drama pendek gratis yang didukung iklan.\n\n3. Akun\nAnda dapat menggunakan Nebula TV sebagai tamu atau membuat akun dengan email, Apple, atau Google.\n\n4. Konten\nSemua konten dimiliki oleh pembuatnya.\n\n5. Iklan\nDengan menggunakan layanan ini, Anda setuju melihat iklan.\n\n6. Penggunaan yang Dapat Diterima\nJangan gunakan aplikasi untuk tujuan ilegal atau mencoba melewati persyaratan iklan.\n\n7. Hubungi Kami\nUntuk pertanyaan, gunakan fitur Laporkan Masalah di aplikasi.",
 
   "player.like": "Suka",
   "player.save": "Simpan",
@@ -611,10 +611,10 @@ const id_: typeof en = {
 };
 
 const ja: typeof en = {
-  "onboarding.title": "DramaVerseへようこそ",
+  "onboarding.title": "Nebula TVへようこそ",
   "onboarding.subtitle": "毎日更新される、やめられない短編ドラマ。",
   "onboarding.continue": "続ける",
-  "onboarding.attTitle": "他のアプリでのアクティビティをDramaVerseが追跡することを許可しますか？",
+  "onboarding.attTitle": "他のアプリでのアクティビティをNebula TVが追跡することを許可しますか？",
   "onboarding.attBody": "これにより、より関連性の高いドラマや広告を表示できます。",
   "onboarding.attAskNotToTrack": "追跡しないようアプリに要求",
   "onboarding.attAllow": "許可",
@@ -633,7 +633,7 @@ const ja: typeof en = {
   "login.back": "戻る",
 
   "register.title": "アカウント作成",
-  "register.subtitle": "DramaVerseに参加し、プログレスを保存しましょう。",
+  "register.subtitle": "Nebula TVに参加し、プログレスを保存しましょう。",
   "register.namePlaceholder": "表示名（任意）",
   "register.emailPlaceholder": "Eメールアドレス",
   "register.passwordPlaceholder": "パスワード（6文字以上）",
@@ -644,7 +644,7 @@ const ja: typeof en = {
   "register.passwordTooShort": "パスワードは6文字以上です。",
   "register.passwordsMismatch": "パスワードが一致しません。",
 
-  "home.logo": "DramaVerse",
+  "home.logo": "Nebula TV",
   "home.continueWatching": "続きから見る",
   "home.free": "無料 EP 1-{n}",
   "home.ep": "第{n}話",
@@ -679,8 +679,8 @@ const ja: typeof en = {
   "profile.reportPlaceholder": "問題を詳しく説明してください...",
   "profile.reportSubmit": "送信",
   "profile.reportSent": "ありがとうございます！レポートが送信されました。",
-  "profile.privacyContent": "DramaVerse プライバシーポリシー\n\n最終更新日: 2025年7月\n\n1. 収集する情報\nデバイス識別子と使用データを収集します。\n\n2. 情報の使用目的\n- DramaVerseサービスの提供\n- 閲覧体験のカスタマイズ\n- 広告表示\n\n3. 広告\n広告ネットワークと連携して広告を表示します。\n\n4. データセキュリティ\n業界標準の暗号化を使用しています。\n\n5. お問い合わせ\nご質問は問題報告機能をご利用ください。",
-  "profile.termsContent": "DramaVerse 利用規約\n\n最終更新日: 2025年7月\n\n1. 規約の同意\nDramaVerseを使用することで、本規約に同意したときます。\n\n2. サービスの説明\nDramaVerseは広告による無料の短篇ドラマ配信プラットフォームです。\n\n3. アカウント\nゲストとして使用するか、アカウントを作成できます。\n\n4. コンテンツ\nすべてのコンテンツは创作者に帰属します。\n\n5. 広告\nサービスを使用することで広告表示に同意したときます。\n\n6. お問い合わせ\nご質問は問題報告機能をご利用ください。",
+  "profile.privacyContent": "Nebula TV プライバシーポリシー\n\n最終更新日: 2025年7月\n\n1. 収集する情報\nデバイス識別子と使用データを収集します。\n\n2. 情報の使用目的\n- Nebula TVサービスの提供\n- 閲覧体験のカスタマイズ\n- 広告表示\n\n3. 広告\n広告ネットワークと連携して広告を表示します。\n\n4. データセキュリティ\n業界標準の暗号化を使用しています。\n\n5. お問い合わせ\nご質問は問題報告機能をご利用ください。",
+  "profile.termsContent": "Nebula TV 利用規約\n\n最終更新日: 2025年7月\n\n1. 規約の同意\nNebula TVを使用することで、本規約に同意したときます。\n\n2. サービスの説明\nNebula TVは広告による無料の短篇ドラマ配信プラットフォームです。\n\n3. アカウント\nゲストとして使用するか、アカウントを作成できます。\n\n4. コンテンツ\nすべてのコンテンツは创作者に帰属します。\n\n5. 広告\nサービスを使用することで広告表示に同意したときます。\n\n6. お問い合わせ\nご質問は問題報告機能をご利用ください。",
 
   "player.like": "いいね",
   "player.save": "保存",
@@ -696,7 +696,7 @@ const ja: typeof en = {
   "login.back": "뒨기",
 
   "register.title": "계정 생성",
-  "register.subtitle": "DramaVerse에 참가하여 진행 상태를 저장하세요.",
+  "register.subtitle": "Nebula TV에 참가하여 진행 상태를 저장하세요.",
   "register.namePlaceholder": "표시 이름 (선택사항)",
   "register.emailPlaceholder": "Email 주소",
   "register.passwordPlaceholder": "비밀번호 (최소 6글자)",
@@ -715,10 +715,10 @@ const ja: typeof en = {
 };
 
 const ko: typeof en = {
-  "onboarding.title": "DramaVerse에 오신 것을 환영합니다",
+  "onboarding.title": "Nebula TV에 오신 것을 환영합니다",
   "onboarding.subtitle": "매일 업데이트되는 몰입감 있는 짧은 드라마.",
   "onboarding.continue": "계속",
-  "onboarding.attTitle": "DramaVerse가 다른 앱에서의 활동을 추적하도록 허용하시겠습니까?",
+  "onboarding.attTitle": "Nebula TV가 다른 앱에서의 활동을 추적하도록 허용하시겠습니까?",
   "onboarding.attBody": "이를 통해 더 관련성 높은 드라마와 광고를 제공할 수 있습니다.",
   "onboarding.attAskNotToTrack": "추적 금지 요청",
   "onboarding.attAllow": "허용",
@@ -729,7 +729,7 @@ const ko: typeof en = {
   "login.google": "Google로 로그인",
   "login.guest": "게스트로 계속하기",
 
-  "home.logo": "DramaVerse",
+  "home.logo": "Nebula TV",
   "home.continueWatching": "계속 시청하기",
   "home.free": "무료 EP 1-{n}",
   "home.ep": "EP {n}",
@@ -751,7 +751,7 @@ const ko: typeof en = {
   "login.back": "返回",
 
   "register.title": "創建帳戶",
-  "register.subtitle": "加入 DramaVerse 以保存觀看進度。",
+  "register.subtitle": "加入 Nebula TV 以保存觀看進度。",
   "register.namePlaceholder": "顯示名稱 (可選)",
   "register.emailPlaceholder": "電子郵件地址",
   "register.passwordPlaceholder": "密碼 (最少 6 位字元)",
@@ -783,8 +783,8 @@ const ko: typeof en = {
   "profile.reportPlaceholder": "문제를 상세히 설명해주세요...",
   "profile.reportSubmit": "제출",
   "profile.reportSent": "감사합니다! 보고가 제출되었습니다.",
-  "profile.privacyContent": "DramaVerse 개인정보보혴 방침\n\n마지막 업데이트: 2025년 7월\n\n1. 수집하는 정보\n디바이스 식별자와 사용 데이터를 수집합니다.\n\n2. 정보 사용 목적\n- DramaVerse 서비스 제공\n- 경험 개인화\n- 광고 표시\n\n3. 광고\n광고 네트워크와 함께 광고를 표시합니다.\n\n4. 데이터 보안\n언어화 압호화를 사용합니다.\n\n5. 문의하기\n문제 보고 기능을 사용해주세요.",
-  "profile.termsContent": "DramaVerse 서비스 이용 약관\n\n마지막 업데이트: 2025년 7월\n\n1. 동의\nDramaVerse를 사용하면 본 약관에 동의하는 것입니다.\n\n2. 서비스 설명\nDramaVerse는 광고로 지원되는 무료 단편 드라마 스트리밍 플랫폼입니다.\n\n3. 계정\n블로거로 사용하거나 계정을 만들 수 있습니다.\n\n4. 컴텐츠\n모든 컴텐츠는 작자에게 고속됩니다.\n\n5. 광고\n서비스를 사용하면 광고 표시에 동의하는 것입니다.\n\n6. 문의하기\n문제 보고 기능을 사용해주세요.",
+  "profile.privacyContent": "Nebula TV 개인정보보혴 방침\n\n마지막 업데이트: 2025년 7월\n\n1. 수집하는 정보\n디바이스 식별자와 사용 데이터를 수집합니다.\n\n2. 정보 사용 목적\n- Nebula TV 서비스 제공\n- 경험 개인화\n- 광고 표시\n\n3. 광고\n광고 네트워크와 함께 광고를 표시합니다.\n\n4. 데이터 보안\n언어화 압호화를 사용합니다.\n\n5. 문의하기\n문제 보고 기능을 사용해주세요.",
+  "profile.termsContent": "Nebula TV 서비스 이용 약관\n\n마지막 업데이트: 2025년 7월\n\n1. 동의\nNebula TV를 사용하면 본 약관에 동의하는 것입니다.\n\n2. 서비스 설명\nNebula TV는 광고로 지원되는 무료 단편 드라마 스트리밍 플랫폼입니다.\n\n3. 계정\n블로거로 사용하거나 계정을 만들 수 있습니다.\n\n4. 컴텐츠\n모든 컴텐츠는 작자에게 고속됩니다.\n\n5. 광고\n서비스를 사용하면 광고 표시에 동의하는 것입니다.\n\n6. 문의하기\n문제 보고 기능을 사용해주세요.",
 
   "player.like": "좋아요",
   "player.save": "저장",
@@ -800,10 +800,10 @@ const ko: typeof en = {
 };
 
 const zhHant: typeof en = {
-  "onboarding.title": "歡迎來到 DramaVerse",
+  "onboarding.title": "歡迎來到 Nebula TV",
   "onboarding.subtitle": "每日更新、令人上癮的短劇。",
   "onboarding.continue": "繼續",
-  "onboarding.attTitle": "允許 DramaVerse 追蹤您在其他應用程式中的活動？",
+  "onboarding.attTitle": "允許 Nebula TV 追蹤您在其他應用程式中的活動？",
   "onboarding.attBody": "這有助於我們為您顯示更相關的短劇與廣告。",
   "onboarding.attAskNotToTrack": "要求應用程式不要追蹤",
   "onboarding.attAllow": "允許",
@@ -814,7 +814,7 @@ const zhHant: typeof en = {
   "login.google": "使用 Google 登入",
   "login.guest": "以訪客身分繼續",
 
-  "home.logo": "DramaVerse",
+  "home.logo": "Nebula TV",
   "home.continueWatching": "繼續觀看",
   "home.free": "免費 第1-{n}集",
   "home.ep": "第{n}集",
@@ -849,8 +849,8 @@ const zhHant: typeof en = {
   "profile.reportPlaceholder": "請詳細描述問題...",
   "profile.reportSubmit": "提交",
   "profile.reportSent": "謝謢您！問題已提交。",
-  "profile.privacyContent": "DramaVerse 隱私政策\n\n最後更新：2025年7月\n\n1. 我們收集的資訊\n我們收集設備識別碼和使用資料，以提供和改善服務。\n\n2. 資訊使用方式\n- 提供 DramaVerse 服務\n- 個人化觀看體驗\n- 顯示廣告\n\n3. 廣告\n我們與廣告網路合作顯示廣告。\n\n4. 資料安全\n我們使用業界標準加密保護您的資料。\n\n5. 聯繫我們\n如有問題，請使用問題回報功能。",
-  "profile.termsContent": "DramaVerse 服務條款\n\n最後更新：2025年7月\n\n1. 接受條款\n使用 DramaVerse 即表示您同意本條款。\n\n2. 服務說明\nDramaVerse 是以廣告支挆的免費短劇串流平台。\n\n3. 帳戶\n您可以訪客身份使用或建立帳戶。\n\n4. 內容\n所有內容皆屬於創作者。\n\n5. 廣告\n使用服務即表示您同意觀看廣告。\n\n6. 聯繫我們\n如有問題，請使用問題回報功能。",
+  "profile.privacyContent": "Nebula TV 隱私政策\n\n最後更新：2025年7月\n\n1. 我們收集的資訊\n我們收集設備識別碼和使用資料，以提供和改善服務。\n\n2. 資訊使用方式\n- 提供 Nebula TV 服務\n- 個人化觀看體驗\n- 顯示廣告\n\n3. 廣告\n我們與廣告網路合作顯示廣告。\n\n4. 資料安全\n我們使用業界標準加密保護您的資料。\n\n5. 聯繫我們\n如有問題，請使用問題回報功能。",
+  "profile.termsContent": "Nebula TV 服務條款\n\n最後更新：2025年7月\n\n1. 接受條款\n使用 Nebula TV 即表示您同意本條款。\n\n2. 服務說明\nNebula TV 是以廣告支挆的免費短劇串流平台。\n\n3. 帳戶\n您可以訪客身份使用或建立帳戶。\n\n4. 內容\n所有內容皆屬於創作者。\n\n5. 廣告\n使用服務即表示您同意觀看廣告。\n\n6. 聯繫我們\n如有問題，請使用問題回報功能。",
 
   "player.like": "喜歡",
   "player.save": "收藏",

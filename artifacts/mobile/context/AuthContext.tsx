@@ -129,12 +129,22 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       throw new Error("CANCELLED");
     }
 
-    const credential = await AppleAuthSession.signInAsync({
+    let credential;
+    try {
+      credential = await AppleAuthSession.signInAsync({
       requestedScopes: [
         AppleAuthSession.AppleAuthenticationScope.FULL_NAME,
         AppleAuthSession.AppleAuthenticationScope.EMAIL,
       ],
     });
+
+    } catch (appleErr: any) {
+      // Apple Auth throws ERR_REQUEST_CANCELED when user cancels
+      if (appleErr?.code === "ERR_REQUEST_CANCELED" || appleErr?.code === "ERR_CANCELED") {
+        throw new Error("CANCELLED");
+      }
+      throw appleErr;
+    }
 
     const deviceId = `apple_${credential.user}`;
     const user = await registerUser.mutateAsync({

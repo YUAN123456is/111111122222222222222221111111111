@@ -45,7 +45,6 @@
       ],
       "expo-web-browser",
       "expo-apple-authentication",
-      "expo-crypto",
       "expo-video",
       "expo-localization",
       [

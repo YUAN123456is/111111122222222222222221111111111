@@ -1,4 +1,4 @@
-﻿import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { View, Image, StyleSheet } from "react-native";
 import { Redirect } from "expo-router";
 import { useAuth } from "@/context/AuthContext";
@@ -24,7 +24,7 @@ export default function Index() {
     return (
       <View style={styles.container}>
         <Image
-          source={require("@/assets/images/logo-wordmark.png")}
+          source={require("@/assets/images/splash.png")}
           style={styles.logo}
           resizeMode="contain"
         />

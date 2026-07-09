@@ -5,7 +5,6 @@ const path = require("path");
 const KOTLIN_VERSION = "2.0.21";
 
 module.exports = function withKotlinVersion(config) {
-  // 1. Set kotlinVersion in root build.gradle
   config = withProjectBuildGradle(config, (config) => {
     if (!config.modResults.contents.includes("ext.kotlinVersion")) {
       config.modResults.contents = config.modResults.contents.replace(
@@ -16,7 +15,6 @@ module.exports = function withKotlinVersion(config) {
     return config;
   });
 
-  // 2. Patch react-native-google-mobile-ads build.gradle to fix Kotlin compilation
   config = withDangerousMod(config, [
     "android",
     (config) => {
@@ -31,37 +29,39 @@ module.exports = function withKotlinVersion(config) {
 
       if (fs.existsSync(adsGradle)) {
         let content = fs.readFileSync(adsGradle, "utf8");
-        let patched = false;
 
-        // Replace invertase plugin with standard android library
-        const pluginBlock = 'plugins {\n  id "io.invertase.gradle.build" version "1.5"\n}';
-        if (content.includes(pluginBlock)) {
-          content = content.replace(pluginBlock, 'apply plugin: "com.android.library"');
-          patched = true;
-        }
+        // 1. Replace PackageJson import
+        content = content.replace(
+          "import io.invertase.gradle.common.PackageJson",
+          "import groovy.json.JsonSlurper"
+        );
 
-        // Replace PackageJson import with groovy.json.JsonSlurper
-        if (content.includes("import io.invertase.gradle.common.PackageJson")) {
-          content = content.replace(
-            "import io.invertase.gradle.common.PackageJson",
-            "import groovy.json.JsonSlurper"
-          );
-          patched = true;
-        }
+        // 2. Replace invertase plugin
+        content = content.replace(
+          'plugins {\n  id "io.invertase.gradle.build" version "1.5"\n}',
+          'apply plugin: "com.android.library"'
+        );
 
-        // Replace PackageJson.getForProject with inline JSON parsing
-        if (content.includes("PackageJson.getForProject(project)")) {
-          content = content.replace(
-            "def packageJson = PackageJson.getForProject(project)",
-            'def packageJson = new JsonSlurper().parse(new File(projectDir, "../../react-native-google-mobile-ads/package.json"))'
-          );
-          patched = true;
-        }
+        // 3. Replace PackageJson.getForProject
+        content = content.replace(
+          "def packageJson = PackageJson.getForProject(project)",
+          'def packageJson = new JsonSlurper().parse(new File(projectDir, "../../react-native-google-mobile-ads/package.json"))'
+        );
 
-        if (patched) {
-          fs.writeFileSync(adsGradle, content, "utf8");
-          console.log("[withKotlinVersion] Patched react-native-google-mobile-ads build.gradle");
-        }
+        // 4. Add compileSdk and namespace to android block
+        content = content.replace(
+          "android {\n  defaultConfig {",
+          "android {\n  compileSdk jsonCompileSdk as Integer\n  namespace 'io.invertase.googlemobileads'\n  defaultConfig {"
+        );
+
+        // 5. Replace ReactNative.* calls (keep ads dependencies, just add react-native dep)
+        content = content.replace(
+          "ReactNative.shared.applyPackageVersion()\nReactNative.shared.applyDefaultExcludes()\nReactNative.module.applyAndroidVersions()\nReactNative.module.applyReactNativeDependency(\"api\")",
+          "// ReactNative helpers removed - using standard deps"
+        );
+
+        fs.writeFileSync(adsGradle, content, "utf8");
+        console.log("[withKotlinVersion] Patched react-native-google-mobile-ads build.gradle");
       }
 
       return config;

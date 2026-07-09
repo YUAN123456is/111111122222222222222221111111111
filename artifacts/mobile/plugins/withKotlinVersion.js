@@ -3,7 +3,7 @@ const fs = require("fs");
 const path = require("path");
 
 const KOTLIN_VERSION = "2.0.21";
-const ADS_SDK_VERSION = "23.6.0"; // Last version compatible with Kotlin 2.0.x
+const ADS_SDK_VERSION = "23.6.0";
 
 module.exports = function withKotlinVersion(config) {
   // 1. Set kotlinVersion in root build.gradle
@@ -32,45 +32,21 @@ module.exports = function withKotlinVersion(config) {
 
       if (fs.existsSync(adsGradle)) {
         let content = fs.readFileSync(adsGradle, "utf8");
+        let patched = false;
 
-        // Replace PackageJson import
-        content = content.replace(
-          "import io.invertase.gradle.common.PackageJson",
-          "import groovy.json.JsonSlurper"
-        );
+        // Only override the ads SDK version - keep everything else intact
+        if (content.includes("play-services-ads:${googleMobileAdsVersion}")) {
+          content = content.replace(
+            'implementation("com.google.android.gms:play-services-ads:${googleMobileAdsVersion}")',
+            'implementation("com.google.android.gms:play-services-ads:' + ADS_SDK_VERSION + '")'
+          );
+          patched = true;
+        }
 
-        // Replace invertase plugin
-        content = content.replace(
-          'plugins {\n  id "io.invertase.gradle.build" version "1.5"\n}',
-          'apply plugin: "com.android.library"'
-        );
-
-        // Replace PackageJson.getForProject
-        content = content.replace(
-          "def packageJson = PackageJson.getForProject(project)",
-          'def packageJson = new JsonSlurper().parse(new File(projectDir, "../../react-native-google-mobile-ads/package.json"))'
-        );
-
-        // Add compileSdk and namespace
-        content = content.replace(
-          "android {\n  defaultConfig {",
-          "android {\n  compileSdk jsonCompileSdk as Integer\n  namespace 'io.invertase.googlemobileads'\n  defaultConfig {"
-        );
-
-        // Override ads SDK version to one compatible with Kotlin 2.0
-        content = content.replace(
-          'implementation("com.google.android.gms:play-services-ads:${googleMobileAdsVersion}")',
-          'implementation("com.google.android.gms:play-services-ads:' + ADS_SDK_VERSION + '")'
-        );
-
-        // Remove ReactNative helper calls
-        content = content.replace(
-          "ReactNative.shared.applyPackageVersion()\nReactNative.shared.applyDefaultExcludes()\nReactNative.module.applyAndroidVersions()\nReactNative.module.applyReactNativeDependency(\"api\")",
-          "// ReactNative helpers removed - using standard deps"
-        );
-
-        fs.writeFileSync(adsGradle, content, "utf8");
-        console.log("[withKotlinVersion] Patched react-native-google-mobile-ads build.gradle");
+        if (patched) {
+          fs.writeFileSync(adsGradle, content, "utf8");
+          console.log("[withKotlinVersion] Patched play-services-ads version to ' + ADS_SDK_VERSION + '");
+        }
       }
 
       return config;

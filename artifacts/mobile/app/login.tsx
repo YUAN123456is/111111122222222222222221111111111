@@ -9,6 +9,7 @@ import {
   KeyboardAvoidingView,
   Platform,
   ScrollView,
+  Alert,
 } from "react-native";
 import { useRouter } from "expo-router";
 import { useAuth } from "@/context/AuthContext";

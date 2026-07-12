@@ -13,7 +13,7 @@ export default function Search() {
   const [query, setQuery] = useState("");
   const [submittedQuery, setSubmittedQuery] = useState("");
 
-  const { data: dramas, isLoading, isFetching } = useListDramas(
+  const { data: dramas, isLoading, isFetching, isError, refetch } = useListDramas(
     { publishedOnly: true, search: submittedQuery || undefined },
     { query: { queryKey: getListDramasQueryKey({ publishedOnly: true, search: submittedQuery || undefined }) } },
   );
@@ -54,6 +54,13 @@ export default function Search() {
         <View style={styles.centered}>
           <FontAwesome5 name="search" solid size={40} color={colors.dark.secondary} />
           <Text style={styles.hintText}>{t("search.hint")}</Text>
+        </View>
+      ) : isError ? (
+        <View style={styles.centered}>
+          <Text style={styles.hintText}>{t("home.loadError")}</Text>
+          <Pressable style={styles.retryButton} onPress={() => refetch()}>
+            <Text style={styles.retryButtonText}>{t("home.retry")}</Text>
+          </Pressable>
         </View>
       ) : (dramas ?? []).filter((d) => d.totalEpisodes > 0).length === 0 ? (
         <View style={styles.centered}>
@@ -106,5 +113,8 @@ const styles = StyleSheet.create({
   poster: { width: "100%", aspectRatio: 3 / 4, borderRadius: 8, backgroundColor: colors.dark.card },
   freeBadge: { position: "absolute", top: 16, right: 16, backgroundColor: colors.dark.accent, paddingHorizontal: 6, paddingVertical: 2, borderRadius: 4 },
   freeText: { color: colors.dark.accentForeground, fontSize: 10, fontWeight: "bold" },
+  retryButton: { backgroundColor: colors.dark.primary, paddingHorizontal: 20, paddingVertical: 10, borderRadius: 20 },
+  retryButtonText: { color: colors.dark.primaryForeground, fontWeight: "600" },
+
   title: { color: colors.dark.foreground, fontSize: 14, fontWeight: "600", marginTop: 8 },
 });

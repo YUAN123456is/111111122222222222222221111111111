@@ -123,6 +123,30 @@ const en = {
   "report.submitted": "Report submitted. Thank you!",
 
   "episodes.title": "Episodes",
+
+  "error.title": "Something went wrong",
+  "error.message": "Please reload the app to continue.",
+  "error.tryAgain": "Try Again",
+
+  "error.detailsTitle": "Error Details",
+
+  "notFound.title": "Oops!",
+  "notFound.message": "This screen doesn't exist.",
+  "notFound.home": "Go to home screen!",
+
+  "profile.deleteFailedTitle": "Delete account failed",
+  "profile.deleteFailedMsg": "Could not delete your account. Please try again.",
+
+  "auth.signInFailedTitle": "Sign in failed",
+  "auth.signInFailedMsg": "Could not complete sign in. Please try again.",
+  "auth.loginFailedTitle": "Login failed",
+  "auth.loginFailedMsg": "Could not complete login. Please try again.",
+  "auth.registerFailedTitle": "Registration failed",
+  "auth.registerFailedMsg": "Could not complete registration. Please try again.",
+  "auth.appleUnavailableTitle": "Not available",
+  "auth.appleUnavailableMsg": "Apple Sign-In is not available on this device.",
+  "auth.googleUnavailableTitle": "Google sign-in unavailable",
+  "auth.googleUnavailableMsg": "Google sign-in is not configured yet.",
 };
 
 const es: typeof en = {
@@ -230,6 +254,29 @@ const es: typeof en = {
   "report.submit": "Enviar",
   "report.submitted": "Reporte enviado. ¡Gracias!",
   "episodes.title": "Episodios",
+
+  "error.title": "Algo salió mal",
+  "error.message": "Por favor, recarga la app para continuar.",
+  "error.tryAgain": "Intentar de nuevo",
+  "error.detailsTitle": "Detalles del error",
+
+  "notFound.title": "¡Ups!",
+  "notFound.message": "Esta pantalla no existe.",
+  "notFound.home": "¡Ir a la página principal!",
+
+  "profile.deleteFailedTitle": "Error al eliminar la cuenta",
+  "profile.deleteFailedMsg": "No se pudo eliminar tu cuenta. Inténtalo de nuevo.",
+
+  "auth.signInFailedTitle": "Error de inicio de sesión",
+  "auth.signInFailedMsg": "No se pudo completar el inicio de sesión. Inténtalo de nuevo.",
+  "auth.loginFailedTitle": "Error de acceso",
+  "auth.loginFailedMsg": "No se pudo completar el acceso. Inténtalo de nuevo.",
+  "auth.registerFailedTitle": "Error de registro",
+  "auth.registerFailedMsg": "No se pudo completar el registro. Inténtalo de nuevo.",
+  "auth.appleUnavailableTitle": "No disponible",
+  "auth.appleUnavailableMsg": "El inicio de sesión con Apple no está disponible en este dispositivo.",
+  "auth.googleUnavailableTitle": "Google no disponible",
+  "auth.googleUnavailableMsg": "El inicio de sesión con Google aún no está configurado.",
 };
 
 const pt: typeof en = {
@@ -381,6 +428,29 @@ const pt: typeof en = {
   "report.submit": "Enviar",
   "report.submitted": "Relatório enviado. Obrigado!",
   "episodes.title": "Episódios",
+
+  "error.title": "Algo deu errado",
+  "error.message": "Por favor, recarregue o app para continuar.",
+  "error.tryAgain": "Tentar novamente",
+  "error.detailsTitle": "Detalhes do erro",
+
+  "notFound.title": "Ops!",
+  "notFound.message": "Esta tela não existe.",
+  "notFound.home": "Ir para a página inicial!",
+
+  "profile.deleteFailedTitle": "Falha ao excluir conta",
+  "profile.deleteFailedMsg": "Não foi possível excluir sua conta. Tente novamente.",
+
+  "auth.signInFailedTitle": "Falha no login",
+  "auth.signInFailedMsg": "Não foi possível completar o login. Tente novamente.",
+  "auth.loginFailedTitle": "Falha no acesso",
+  "auth.loginFailedMsg": "Não foi possível completar o acesso. Tente novamente.",
+  "auth.registerFailedTitle": "Falha no registro",
+  "auth.registerFailedMsg": "Não foi possível completar o registro. Tente novamente.",
+  "auth.appleUnavailableTitle": "Indisponível",
+  "auth.appleUnavailableMsg": "O login com Apple não está disponível neste dispositivo.",
+  "auth.googleUnavailableTitle": "Google indisponível",
+  "auth.googleUnavailableMsg": "O login com Google ainda não foi configurado.",
 };
 
 const ar: typeof en = {
@@ -463,6 +533,29 @@ const ar: typeof en = {
   "report.submit": "إرسال",
   "report.submitted": "تم إرسال الإبلاغ. شكراً!",
   "episodes.title": "الحلقات",
+
+  "error.title": "حدث خطأ ما",
+  "error.message": "يرجى إعادة تحميل التطبيق للمتابعة.",
+  "error.tryAgain": "حاول مرة أخرى",
+  "error.detailsTitle": "تفاصيل الخطأ",
+
+  "notFound.title": "عذراً!",
+  "notFound.message": "هذه الصفحة غير موجودة.",
+  "notFound.home": "الذهاب إلى الصفحة الرئيسية!",
+
+  "profile.deleteFailedTitle": "فشل حذف الحساب",
+  "profile.deleteFailedMsg": "تعذر حذف حسابك. يرجى المحاولة مرة أخرى.",
+
+  "auth.signInFailedTitle": "فشل تسجيل الدخول",
+  "auth.signInFailedMsg": "تعذر إكمال تسجيل الدخول. يرجى المحاولة مرة أخرى.",
+  "auth.loginFailedTitle": "فشل الدخول",
+  "auth.loginFailedMsg": "تعذر إكمال الدخول. يرجى المحاولة مرة أخرى.",
+  "auth.registerFailedTitle": "فشل التسجيل",
+  "auth.registerFailedMsg": "تعذر إكمال التسجيل. يرجى المحاولة مرة أخرى.",
+  "auth.appleUnavailableTitle": "غير متاح",
+  "auth.appleUnavailableMsg": "تسجيل الدخول عبر Apple غير متاح على هذا الجهاز.",
+  "auth.googleUnavailableTitle": "Google غير متاح",
+  "auth.googleUnavailableMsg": "تسجيل الدخول عبر Google لم يتم إعداده بعد.",
 };
 
 const th: typeof en = {
@@ -570,6 +663,29 @@ const th: typeof en = {
   "report.submit": "ส่ง",
   "report.submitted": "ส่งรายงานแล้ว ขอบคุณ!",
   "episodes.title": "ตระ",
+
+  "error.title": "เกิดข้อผิดพลาด",
+  "error.message": "กรุณาโหลดแอปใหม่เพื่อดำเนินการต่อ",
+  "error.tryAgain": "ลองอีกครั้ง",
+  "error.detailsTitle": "รายละเอียดข้อผิดพลาด",
+
+  "notFound.title": "อั๊ะ!",
+  "notFound.message": "หน้านี้ไม่มีอยู่",
+  "notFound.home": "ไปที่หน้าหลัก!",
+
+  "profile.deleteFailedTitle": "ลบบัญชีไม่สำเร็จ",
+  "profile.deleteFailedMsg": "ไม่สามารถลบบัญชีของคุณได้ กรุณาลองอีกครั้ง",
+
+  "auth.signInFailedTitle": "เข้าสู่ระบบไม่สำเร็จ",
+  "auth.signInFailedMsg": "ไม่สามารถเข้าสู่ระบบได้ กรุณาลองอีกครั้ง",
+  "auth.loginFailedTitle": "เข้าสู่ระบบไม่สำเร็จ",
+  "auth.loginFailedMsg": "ไม่สามารถเข้าสู่ระบบได้ กรุณาลองอีกครั้ง",
+  "auth.registerFailedTitle": "สมัครสมาชิกไม่สำเร็จ",
+  "auth.registerFailedMsg": "ไม่สามารถสมัครสมาชิกได้ กรุณาลองอีกครั้ง",
+  "auth.appleUnavailableTitle": "ไม่พร้อมใช้งาน",
+  "auth.appleUnavailableMsg": "การเข้าสู่ระบบด้วย Apple ไม่พร้อมใช้งานบนอุปกรณ์นี้",
+  "auth.googleUnavailableTitle": "Google ไม่พร้อมใช้งาน",
+  "auth.googleUnavailableMsg": "การเข้าสู่ระบบด้วย Google ยังไม่ได้ตั้งค่า",
 };
 
 const vi: typeof en = {
@@ -677,6 +793,29 @@ const vi: typeof en = {
   "report.submit": "Gửi",
   "report.submitted": "Đã gửi báo cáo. Cảm ơn bạn!",
   "episodes.title": "Tập phim",
+
+  "error.title": "Đã xảy ra lỗi",
+  "error.message": "Vui lòng tải lại ứng dụng để tiếp tục.",
+  "error.tryAgain": "Thử lại",
+  "error.detailsTitle": "Chi tiết lỗi",
+
+  "notFound.title": "Rất tiếc!",
+  "notFound.message": "Trang này không tồn tại.",
+  "notFound.home": "Đi đến trang chủ!",
+
+  "profile.deleteFailedTitle": "Xóa tài khoản thất bại",
+  "profile.deleteFailedMsg": "Không thể xóa tài khoản của bạn. Vui lòng thử lại.",
+
+  "auth.signInFailedTitle": "Đăng nhập thất bại",
+  "auth.signInFailedMsg": "Không thể hoàn tất đăng nhập. Vui lòng thử lại.",
+  "auth.loginFailedTitle": "Đăng nhập thất bại",
+  "auth.loginFailedMsg": "Không thể hoàn tất đăng nhập. Vui lòng thử lại.",
+  "auth.registerFailedTitle": "Đăng ký thất bại",
+  "auth.registerFailedMsg": "Không thể hoàn tất đăng ký. Vui lòng thử lại.",
+  "auth.appleUnavailableTitle": "Không khả dụng",
+  "auth.appleUnavailableMsg": "Đăng nhập bằng Apple không khả dụng trên thiết bị này.",
+  "auth.googleUnavailableTitle": "Google không khả dụng",
+  "auth.googleUnavailableMsg": "Đăng nhập bằng Google chưa được cấu hình.",
 };
 
 const id_: typeof en = {
@@ -784,6 +923,29 @@ const id_: typeof en = {
   "report.submit": "Kirim",
   "report.submitted": "Laporan terkirim. Terima kasih!",
   "episodes.title": "Episode",
+
+  "error.title": "Terjadi kesalahan",
+  "error.message": "Silakan muat ulang aplikasi untuk melanjutkan.",
+  "error.tryAgain": "Coba lagi",
+  "error.detailsTitle": "Detail kesalahan",
+
+  "notFound.title": "Ups!",
+  "notFound.message": "Halaman ini tidak ada.",
+  "notFound.home": "Ke beranda!",
+
+  "profile.deleteFailedTitle": "Gagal menghapus akun",
+  "profile.deleteFailedMsg": "Tidak dapat menghapus akun Anda. Silakan coba lagi.",
+
+  "auth.signInFailedTitle": "Gagal masuk",
+  "auth.signInFailedMsg": "Tidak dapat menyelesaikan masuk. Silakan coba lagi.",
+  "auth.loginFailedTitle": "Gagal masuk",
+  "auth.loginFailedMsg": "Tidak dapat menyelesaikan masuk. Silakan coba lagi.",
+  "auth.registerFailedTitle": "Gagal mendaftar",
+  "auth.registerFailedMsg": "Tidak dapat menyelesaikan pendaftaran. Silakan coba lagi.",
+  "auth.appleUnavailableTitle": "Tidak tersedia",
+  "auth.appleUnavailableMsg": "Masuk dengan Apple tidak tersedia di perangkat ini.",
+  "auth.googleUnavailableTitle": "Google tidak tersedia",
+  "auth.googleUnavailableMsg": "Masuk dengan Google belum dikonfigurasi.",
 };
 
 const ja: typeof en = {
@@ -916,6 +1078,29 @@ const ja: typeof en = {
   "report.submit": "送信",
   "report.submitted": "報告が送信されました。ありがとうございます！",
   "episodes.title": "エピソード",
+
+  "error.title": "エラーが発生しました",
+  "error.message": "アプリを再読み込みしてください。",
+  "error.tryAgain": "再試行",
+  "error.detailsTitle": "エラー詳細",
+
+  "notFound.title": "おっと！",
+  "notFound.message": "この画面は存在しません。",
+  "notFound.home": "ホームに戻る",
+
+  "profile.deleteFailedTitle": "アカウント削除失敗",
+  "profile.deleteFailedMsg": "アカウントを削除できませんでした。もう一度お試しください。",
+
+  "auth.signInFailedTitle": "サインイン失敗",
+  "auth.signInFailedMsg": "サインインを完了できませんでした。もう一度お試しください。",
+  "auth.loginFailedTitle": "ログイン失敗",
+  "auth.loginFailedMsg": "ログインを完了できませんでした。もう一度お試しください。",
+  "auth.registerFailedTitle": "登録失敗",
+  "auth.registerFailedMsg": "登録を完了できませんでした。もう一度お試しください。",
+  "auth.appleUnavailableTitle": "利用できません",
+  "auth.appleUnavailableMsg": "このデバイスではAppleサインインを利用できません。",
+  "auth.googleUnavailableTitle": "Google利用不可",
+  "auth.googleUnavailableMsg": "Googleサインインはまだ設定されていません。",
 };
 
 const ko: typeof en = {
@@ -1023,6 +1208,29 @@ const ko: typeof en = {
   "report.submit": "제출",
   "report.submitted": "보고가 제출되었습니다. 감사합니다!",
   "episodes.title": "에피솔",
+
+  "error.title": "오류가 발생했습니다",
+  "error.message": "앱을 다시 로드해 주세요.",
+  "error.tryAgain": "다시 시도",
+  "error.detailsTitle": "오류 상세",
+
+  "notFound.title": "이러하!",
+  "notFound.message": "이 화면은 존재하지 않습니다.",
+  "notFound.home": "홈으로 이동!",
+
+  "profile.deleteFailedTitle": "계정삭제 실패",
+  "profile.deleteFailedMsg": "계정을 삭제할 수 없습니다. 다시 시도해 주세요.",
+
+  "auth.signInFailedTitle": "로그인 실패",
+  "auth.signInFailedMsg": "로그인을 완료할 수 없습니다. 다시 시도해 주세요.",
+  "auth.loginFailedTitle": "로그인 실패",
+  "auth.loginFailedMsg": "로그인을 완료할 수 없습니다. 다시 시도해 주세요.",
+  "auth.registerFailedTitle": "가입 실패",
+  "auth.registerFailedMsg": "가입을 완료할 수 없습니다. 다시 시도해 주세요.",
+  "auth.appleUnavailableTitle": "사용 불가",
+  "auth.appleUnavailableMsg": "이 기기에서 Apple 로그인을 사용할 수 없습니다.",
+  "auth.googleUnavailableTitle": "Google 사용 불가",
+  "auth.googleUnavailableMsg": "Google 로그인이 아지가 설정되지 않았습니다.",
 };
 
 const zhHant: typeof en = {
@@ -1124,6 +1332,29 @@ const zhHant: typeof en = {
   "report.submit": "提交",
   "report.submitted": "已提交回報。謝謢您！",
   "episodes.title": "集數",
+
+  "error.title": "發生錯誤",
+  "error.message": "請重新載入應用程式以繼續。",
+  "error.tryAgain": "重試",
+  "error.detailsTitle": "錯誤詳情",
+
+  "notFound.title": "哎呀！",
+  "notFound.message": "此畫面不存在。",
+  "notFound.home": "前往首頁！",
+
+  "profile.deleteFailedTitle": "刪除帳戶失敗",
+  "profile.deleteFailedMsg": "無法刪除您的帳戶。請再試一次。",
+
+  "auth.signInFailedTitle": "登入失敗",
+  "auth.signInFailedMsg": "無法完成登入。請再試一次。",
+  "auth.loginFailedTitle": "登入失敗",
+  "auth.loginFailedMsg": "無法完成登入。請再試一次。",
+  "auth.registerFailedTitle": "註冊失敗",
+  "auth.registerFailedMsg": "無法完成註冊。請再試一次。",
+  "auth.appleUnavailableTitle": "無法使用",
+  "auth.appleUnavailableMsg": "此裝置不支援 Apple 登入。",
+  "auth.googleUnavailableTitle": "Google 無法使用",
+  "auth.googleUnavailableMsg": "Google 登入尚未設定。",
 };
 
 export const translations: Record<string, typeof en> = {

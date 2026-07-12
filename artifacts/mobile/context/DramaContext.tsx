@@ -39,11 +39,11 @@ export function DramaProvider({ children }: { children: React.ReactNode }) {
   const { userId } = useAuth();
   const queryClient = useQueryClient();
 
-  const { data: progressList } = useListWatchProgress(userId ?? "", {
-    query: { enabled: !!userId, queryKey: getListWatchProgressQueryKey(userId ?? "") },
+  const { data: progressList } = useListWatchProgress(userId ?? "guest", {
+    query: { enabled: !!userId, queryKey: getListWatchProgressQueryKey(userId ?? "guest") },
   });
-  const { data: favoritesList } = useListFavorites(userId ?? "", {
-    query: { enabled: !!userId, queryKey: getListFavoritesQueryKey(userId ?? "") },
+  const { data: favoritesList } = useListFavorites(userId ?? "guest", {
+    query: { enabled: !!userId, queryKey: getListFavoritesQueryKey(userId ?? "guest") },
   });
 
   const setWatchProgress = useSetWatchProgress();
@@ -68,7 +68,7 @@ export function DramaProvider({ children }: { children: React.ReactNode }) {
       await setWatchProgress.mutateAsync({ userId, dramaId, data: { lastEpisode: episode, position } });
       queryClient.invalidateQueries({ queryKey: getListWatchProgressQueryKey(userId) });
     } catch {
-      // best-effort â€” stale userId or network error, don't crash
+      // best-effort â€?stale userId or network error, don't crash
     }
   };
 
@@ -82,7 +82,7 @@ export function DramaProvider({ children }: { children: React.ReactNode }) {
       }
       queryClient.invalidateQueries({ queryKey: getListFavoritesQueryKey(userId) });
     } catch {
-      // best-effort â€” stale userId or network error, don't crash
+      // best-effort â€?stale userId or network error, don't crash
     }
   };
 

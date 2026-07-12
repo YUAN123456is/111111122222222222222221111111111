@@ -5,6 +5,7 @@ import { useRegisterUser, useLoginUser } from "@workspace/api-client-react";
 import * as AuthSession from "expo-auth-session";
 import * as AppleAuthSession from "expo-apple-authentication";
 import * as Crypto from "expo-crypto";
+import { translations, DEFAULT_LOCALE, TranslationKey } from "@/i18n/translations";
 
 interface AuthState {
   hasCompletedOnboarding: boolean;
@@ -27,15 +28,36 @@ const AuthContext = createContext<AuthContextType | null>(null);
 
 const generateDeviceId = () => `dev_${Date.now()}_${Math.random().toString(36).slice(2, 12)}`;
 
-// Google OAuth config — replace with your own client IDs from Google Cloud Console
+// Google OAuth config - replace with your own client IDs from Google Cloud Console
+// Google OAuth config - replace with your own client IDs from Google Cloud Console
 const GOOGLE_CLIENT_ID = {
   // For Expo Go / development
-  expo: "YOUR_EXPO_GOOGLE_CLIENT_ID.apps.googleusercontent.com",
+  expo: process.env.EXPO_PUBLIC_GOOGLE_EXPO_CLIENT_ID || "",
   // For standalone Android build
-  android: "YOUR_ANDROID_GOOGLE_CLIENT_ID.apps.googleusercontent.com",
+  android: process.env.EXPO_PUBLIC_GOOGLE_ANDROID_CLIENT_ID || "",
   // For standalone iOS build
-  ios: "YOUR_IOS_GOOGLE_CLIENT_ID.apps.googleusercontent.com",
+  ios: process.env.EXPO_PUBLIC_GOOGLE_IOS_CLIENT_ID || "",
 };
+
+function isGoogleClientIdConfigured(): boolean {
+  const id = GOOGLE_CLIENT_ID.expo || GOOGLE_CLIENT_ID.android || GOOGLE_CLIENT_ID.ios;
+  return Boolean(id && id !== "");
+}
+function getStoredLocale(): string {
+  try {
+    const stored = (globalThis as any).__authLocaleOverride as string | undefined;
+    if (stored && translations[stored]) return stored;
+  } catch (e) {
+    // ignore
+  }
+  return DEFAULT_LOCALE;
+}
+
+function authT(key: TranslationKey): string {
+  const locale = getStoredLocale();
+  const dict = translations[locale] ?? translations[DEFAULT_LOCALE];
+  return dict[key] ?? translations[DEFAULT_LOCALE][key] ?? key;
+}
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [state, setState] = useState<AuthState>({
@@ -78,12 +100,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       }
     } catch (err: any) {
       if (err?.message !== "CANCELLED") {
-        Alert.alert("Sign in failed", "Could not complete sign in. Please try again.");
+        Alert.alert(authT("auth.signInFailedTitle"), authT("auth.signInFailedMsg"));
       }
     }
   };
 
   const signInWithGoogle = async () => {
+    if (!isGoogleClientIdConfigured()) {
+      Alert.alert(authT("auth.googleUnavailableTitle"), authT("auth.googleUnavailableMsg"));
+      return;
+    }
     const clientId = GOOGLE_CLIENT_ID.expo;
     const redirectUri = AuthSession.makeRedirectUri({ useProxy: true });
 
@@ -119,25 +145,24 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const signInWithApple = async () => {
     if (Platform.OS !== "ios") {
-      Alert.alert("Not available", "Apple Sign-In is only available on iOS.");
+      Alert.alert(authT("auth.appleUnavailableTitle"), authT("auth.appleUnavailableMsg"));
       throw new Error("CANCELLED");
     }
 
     const isAvailable = await AppleAuthSession.isAvailableAsync();
     if (!isAvailable) {
-      Alert.alert("Not available", "Apple Sign-In is not available on this device.");
+      Alert.alert(authT("auth.appleUnavailableTitle"), authT("auth.appleUnavailableMsg"));
       throw new Error("CANCELLED");
     }
 
     let credential;
     try {
       credential = await AppleAuthSession.signInAsync({
-      requestedScopes: [
-        AppleAuthSession.AppleAuthenticationScope.FULL_NAME,
-        AppleAuthSession.AppleAuthenticationScope.EMAIL,
-      ],
-    });
-
+        requestedScopes: [
+          AppleAuthSession.AppleAuthenticationScope.FULL_NAME,
+          AppleAuthSession.AppleAuthenticationScope.EMAIL,
+        ],
+      });
     } catch (appleErr: any) {
       // Apple Auth throws ERR_REQUEST_CANCELED when user cancels
       if (appleErr?.code === "ERR_REQUEST_CANCELED" || appleErr?.code === "ERR_CANCELED") {
@@ -176,8 +201,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       });
       await saveState({ ...state, provider: "email", userId: user.id, email: user.email ?? email });
     } catch (err: any) {
-      const msg = (err?.data && typeof err.data === "object" && err.data.error) || err?.message || "Login failed";
-      Alert.alert("Login failed", msg);
+      const msg = (err?.data && typeof err.data === "object" && err.data.error) || err?.message || authT("auth.loginFailedMsg");
+      Alert.alert(authT("auth.loginFailedTitle"), msg);
       throw err;
     }
   };
@@ -189,14 +214,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       });
       await saveState({ ...state, provider: "email", userId: user.id, email: user.email ?? email });
     } catch (err: any) {
-      const msg = (err?.data && typeof err.data === "object" && err.data.error) || err?.message || "Registration failed";
-      Alert.alert("Registration failed", msg);
+      const msg = (err?.data && typeof err.data === "object" && err.data.error) || err?.message || authT("auth.registerFailedMsg");
+      Alert.alert(authT("auth.registerFailedTitle"), msg);
       throw err;
     }
   };
 
   const signOut = async () => {
-    await AsyncStorage.multiRemove(["auth_state", "drama_state", "device_id"]);
+    await AsyncStorage.multiRemove(["auth_state", "drama_state"]);
     setState({
       hasCompletedOnboarding: false,
       attChoice: null,

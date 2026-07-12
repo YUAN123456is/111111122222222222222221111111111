@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from "react";
 import { View, Text, StyleSheet, ScrollView, Pressable, Image, ActivityIndicator } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import logoWordmark from "@/assets/images/logo-wordmark.png";
+import systemLogo from "@/assets/images/icon.png";
 import { useRouter } from "expo-router";
 import { useListDramas, useGetHomeFeed } from "@workspace/api-client-react";
 import { useDrama } from "@/context/DramaContext";
@@ -59,7 +59,7 @@ export default function Home() {
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.header}>
-        <Image source={logoWordmark} style={styles.logo} resizeMode="contain" accessibilityLabel={t("home.logo")} />
+        <Image source={systemLogo} style={styles.logo} resizeMode="contain" accessibilityLabel={t("home.logo")} />
         <View style={styles.headerActions}>
           <Pressable onPress={() => router.push("/search")} hitSlop={12}>
             <FontAwesome5 name="search" solid size={22} color={colors.dark.foreground} />

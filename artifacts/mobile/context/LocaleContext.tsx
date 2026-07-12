@@ -43,17 +43,16 @@ export function LocaleProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     AsyncStorage.getItem(LOCALE_STORAGE_KEY).then((stored) => {
-      if (stored && translations[stored]) {
-        setLocaleState(stored);
-      } else {
-        setLocaleState(detectDeviceLocale());
-      }
+      const finalLocale = stored && translations[stored] ? stored : detectDeviceLocale();
+      setLocaleState(finalLocale);
+      try { (globalThis as any).__authLocaleOverride = finalLocale; } catch (e) { /* ignore */ }
       setIsLoading(false);
     });
   }, []);
 
   const setLocale = async (newLocale: string) => {
     setLocaleState(newLocale);
+    try { (globalThis as any).__authLocaleOverride = newLocale; } catch (e) { /* ignore */ }
     await AsyncStorage.setItem(LOCALE_STORAGE_KEY, newLocale);
   };
 

@@ -1,4 +1,4 @@
-﻿import React, { useState } from "react";
+import React, { useState } from "react";
 import { View, Text, StyleSheet, Pressable, ScrollView, Alert, Modal, TextInput } from "react-native";
 import { useRouter } from "expo-router";
 import { useAuth } from "@/context/AuthContext";
@@ -22,9 +22,9 @@ export default function Profile() {
   const [reportSent, setReportSent] = useState(false);
   const currentLanguageLabel = SUPPORTED_LOCALES.find((l) => l.code === locale)?.label ?? "English";
 
-  const historyDramas = Object.keys(watchHistory).map(id => {
-    return { drama: dramas?.find(d => d.id === id), history: watchHistory[id] };
-  }).filter(h => h.drama);
+  const historyDramas = Object.keys(watchHistory)
+    .map((id) => ({ drama: dramas?.find((d) => d.id === id), history: watchHistory[id] }))
+    .filter((h): h is { drama: NonNullable<typeof h.drama>; history: (typeof watchHistory)[string] } => !!h.drama);
 
   const handleSignOut = async () => {
     Alert.alert(
@@ -55,15 +55,39 @@ export default function Profile() {
           style: "destructive",
           onPress: async () => {
             try {
-              if (userId) {
-                const apiUrl = `https://${process.env.EXPO_PUBLIC_DOMAIN}/api/users/${userId}`;
-                await fetch(apiUrl, { method: "DELETE" });
+              if (!userId) {
+                await signOut();
+                router.replace("/login");
+                return;
               }
-            } catch {
-              // Best-effort delete; still sign out
+
+              const apiUrl = `https://${process.env.EXPO_PUBLIC_DOMAIN}/api/users/${userId}`;
+              const res = await fetch(apiUrl, { method: "DELETE" });
+
+              if (!res.ok) {
+                let message = "";
+                try {
+                  const body = await res.json();
+                  message = body?.error || body?.message || "";
+                } catch {
+                  // ignore non-JSON error body
+                }
+
+                Alert.alert(
+                  t("profile.deleteFailedTitle"),
+                  message || t("profile.deleteFailedMsg")
+                );
+                return;
+              }
+
+              await signOut();
+              router.replace("/login");
+            } catch (deleteErr: any) {
+              Alert.alert(
+                t("profile.deleteFailedTitle"),
+                deleteErr?.message || t("profile.deleteFailedMsg")
+              );
             }
-            await signOut();
-            router.replace("/login");
           }
         }
       ]
@@ -123,7 +147,7 @@ export default function Profile() {
                 <View key={fav.dramaId}>
                   <Pressable
                     style={styles.historyRow}
-                    onPress={() => router.push({ pathname: "/player", params: { dramaId: fav.dramaId } })}
+                    onPress={() => router.push({ pathname: "/player", params: { dramaId: fav.dramaId, initialEpisode: 1 } })}
                   >
                     <Text style={styles.historyTitle} numberOfLines={1}>{getLocalizedTitle(fav, locale)}</Text>
                     <FontAwesome5 name="bookmark" solid size={14} color={colors.dark.accent} />
@@ -141,12 +165,12 @@ export default function Profile() {
             <Text style={styles.sectionTitle}>{t("profile.watchHistory")}</Text>
             <View style={styles.card}>
               {historyDramas.map(({ drama, history }, index) => (
-                <View key={drama!.id}>
+                <View key={drama.id}>
                   <Pressable
                     style={styles.historyRow}
-                    onPress={() => router.push({ pathname: "/player", params: { dramaId: drama!.id, initialEpisode: history.lastEpisode } })}
+                    onPress={() => router.push({ pathname: "/player", params: { dramaId: drama.id, initialEpisode: history.lastEpisode } })}
                   >
-                    <Text style={styles.historyTitle} numberOfLines={1}>{getLocalizedTitle(drama!, locale)}</Text>
+                    <Text style={styles.historyTitle} numberOfLines={1}>{getLocalizedTitle(drama, locale)}</Text>
                     <Text style={styles.historyEp}>{t("home.ep", { n: history.lastEpisode })}</Text>
                   </Pressable>
                   {index < historyDramas.length - 1 && <View style={styles.divider} />}
@@ -538,5 +562,3 @@ const styles = StyleSheet.create({
     lineHeight: 22,
   },
 });
-
-

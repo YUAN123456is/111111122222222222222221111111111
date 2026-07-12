@@ -103,10 +103,10 @@ const SingleVideo = ({
       const nowPaused = !prev;
       setShowPauseIcon(true);
       if (!nowPaused) {
-        // resuming â€” flash play icon then hide
+        // resuming â€?flash play icon then hide
         setTimeout(() => setShowPauseIcon(false), 600);
       }
-      // pausing â€” keep icon visible until next tap
+      // pausing â€?keep icon visible until next tap
       return nowPaused;
     });
   };
@@ -175,16 +175,27 @@ export default function PlayerScreen() {
   const router = useRouter();
   const params = useLocalSearchParams();
   const dramaId = params.dramaId as string;
-  const initialEpisode = parseInt((params.initialEpisode as string) || "1", 10);
+  const requestedInitialEpisode = Number(params.initialEpisode);
+  const initialEpisode = Number.isFinite(requestedInitialEpisode) && requestedInitialEpisode > 0 ? requestedInitialEpisode : 1;
 
   const { userId } = useAuth();
   const { updateProgress, isFavorite, toggleFavorite } = useDrama();
   const { locale, t } = useLocale();
+  const [lockedHint, setLockedHint] = useState(false);
   const queryClient = useQueryClient();
 
   const { data: drama, isLoading, isError } = useGetDramaPlayback(
     { dramaId, userId: userId ?? undefined, locale },
-    { query: { enabled: !!dramaId, queryKey: getGetDramaPlaybackQueryKey({ dramaId, userId: userId ?? undefined, locale }) } }
+    {
+      query: {
+        enabled: !!dramaId,
+        queryKey: getGetDramaPlaybackQueryKey({
+          dramaId,
+          ...(userId ? { userId } : {}),
+          ...(locale ? { locale } : {}),
+        }),
+      },
+    }
   );
 
   const [currentIndex, setCurrentIndex] = useState(initialEpisode - 1);
@@ -273,7 +284,14 @@ export default function PlayerScreen() {
   }
 
   if (isError || !drama) {
-    return <View style={styles.container}><Text style={styles.errorText}>{t("player.notFound")}</Text></View>;
+    return (
+      <View style={[styles.container, styles.centered]}>
+        <Pressable onPress={() => router.back()} hitSlop={12} style={styles.backOnlyButton}>
+          <FontAwesome5 name="chevron-left" solid size={20} color={colors.dark.foreground} />
+        </Pressable>
+        <Text style={styles.errorText}>{t("player.notFound")}</Text>
+      </View>
+    );
   }
 
   if (drama.episodes.length === 0) {
@@ -302,7 +320,13 @@ export default function PlayerScreen() {
   };
 
   const handleAdSuccess = () => {
-    queryClient.invalidateQueries({ queryKey: getGetDramaPlaybackQueryKey({ dramaId, userId: userId ?? undefined }) });
+    queryClient.invalidateQueries({
+      queryKey: getGetDramaPlaybackQueryKey({
+        dramaId,
+        ...(userId ? { userId } : {}),
+        ...(locale ? { locale } : {}),
+      }),
+    });
     setShowAdWall(false);
   };
 
@@ -410,12 +434,7 @@ export default function PlayerScreen() {
           </View>
           <Text style={styles.actionText}>{t("player.episodes")}</Text>
         </Pressable>
-        <Pressable style={styles.actionItem}>
-          <View style={styles.actionIconWrap}>
-            <FontAwesome5 name="share" solid size={24} color={colors.dark.foreground} />
-          </View>
-          <Text style={styles.actionText}>{t("player.share")}</Text>
-        </Pressable>
+
         <Pressable style={styles.actionItem} onPress={() => setShowReport(true)}>
           <View style={styles.actionIconWrap}>
             <FontAwesome5 name="flag" solid size={20} color={colors.dark.secondaryForeground} />
@@ -424,6 +443,14 @@ export default function PlayerScreen() {
       </View>
 
       {/* Bottom Info Overlay */}
+      {lockedHint && (
+        <View style={styles.lockedHintWrap} pointerEvents="none">
+          <View style={styles.lockedHintBox}>
+            <Text style={styles.lockedHintText}>{t("player.previewPlaying")}</Text>
+          </View>
+        </View>
+      )}
+
       <SafeAreaView style={styles.bottomInfo}>
         <View style={styles.badgeRow} pointerEvents="none">
           {isUnlocked ? (
@@ -467,7 +494,10 @@ export default function PlayerScreen() {
         visible={showAdWall}
         onClose={() => {
           setShowAdWall(false);
-          if (!isUnlocked) router.back();
+          if (!isUnlocked) {
+            setLockedHint(true);
+            setTimeout(() => setLockedHint(false), 2000);
+          }
         }}
         onSuccess={handleAdSuccess}
         userId={userId ?? ""}
@@ -614,6 +644,24 @@ const styles = StyleSheet.create({
     textShadowOffset: { width: 0, height: 1 },
     textShadowRadius: 2,
   },
+  lockedHintWrap: {
+    ...StyleSheet.absoluteFillObject,
+    justifyContent: 'center',
+    alignItems: 'center',
+    zIndex: 12,
+  },
+  lockedHintBox: {
+    paddingHorizontal: 16,
+    paddingVertical: 10,
+    borderRadius: 20,
+    backgroundColor: 'rgba(0,0,0,0.72)',
+  },
+  lockedHintText: {
+    color: '#fff',
+    fontSize: 14,
+    fontWeight: '600',
+  },
+
   epRow: {
     flexDirection: 'row',
     alignItems: 'center',
